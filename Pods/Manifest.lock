@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (5.5.0)
+  - FSCalendar (2.8.2)
+  - IQKeyboardManagerSwift (6.5.9)
+  - SnapKit (5.0.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - FSCalendar
+  - IQKeyboardManagerSwift
+  - SnapKit
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - FSCalendar
+    - IQKeyboardManagerSwift
+    - SnapKit
+
+SPEC CHECKSUMS:
+  Alamofire: 1c4fb5369c3fe93d2857c780d8bbe09f06f97e7c
+  FSCalendar: e6a2eb9c571bf0719ed797ef807e08426753c241
+  IQKeyboardManagerSwift: 6e839c575c4aa1078d58a596e41244e77abe918f
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+
+PODFILE CHECKSUM: 0a2da5e5288077160d3aa8366d5c29268df357ff
+
+COCOAPODS: 1.11.2
