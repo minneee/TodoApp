@@ -44,16 +44,28 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wCk-Cp-c57">
+                                <rect key="frame" x="0.0" y="408" width="414" height="488"/>
+                                <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="wCk-Cp-c57" firstAttribute="top" secondItem="yvg-69-Bca" secondAttribute="bottom" id="Fpe-cu-7dD"/>
+                            <constraint firstItem="wCk-Cp-c57" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="g0f-49-qPt"/>
+                            <constraint firstItem="wCk-Cp-c57" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="gkc-TL-SFR"/>
+                            <constraint firstAttribute="bottom" secondItem="wCk-Cp-c57" secondAttribute="bottom" id="hZH-Kp-Uss"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ouT-CZ-IOw"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qZm-3g-7Cm"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="tcR-Hl-yga"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="1Vh-t3-102"/>
+                    <connections>
+                        <outlet property="todoCalendar" destination="yvg-69-Bca" id="lBG-9Z-JVe"/>
+                        <outlet property="todoTableView" destination="wCk-Cp-c57" id="bL8-NO-AH7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -69,6 +81,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qkX-9w-DeC">
                                 <rect key="frame" x="20" y="74" width="374" height="40"/>
+                                <color key="backgroundColor" red="0.9529411793" green="0.96078431610000004" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.041069770929999999" green="0.4593368665" blue="0.88316360949999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="jjL-1A-F0S"/>
@@ -97,7 +110,7 @@
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-su-zSn">
                                 <rect key="frame" x="20" y="380" width="374" height="350"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.9529411793" green="0.96078431610000004" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="350" id="B6h-Xl-MZv"/>
                                 </constraints>

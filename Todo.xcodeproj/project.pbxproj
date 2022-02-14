@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D2A654827BA79970048C4C1 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */; };
+		3D2A654927BA79970048C4C1 /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */; };
+		3D2A654B27BA7EA70048C4C1 /* TodoListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654A27BA7EA70048C4C1 /* TodoListRequest.swift */; };
+		3D2A654D27BA7EBC0048C4C1 /* TodoListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654C27BA7EBC0048C4C1 /* TodoListResponse.swift */; };
+		3D2A654F27BA83DD0048C4C1 /* AddTodoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654E27BA83DD0048C4C1 /* AddTodoRequest.swift */; };
+		3D2A655127BA83EF0048C4C1 /* AddTodoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A655027BA83EF0048C4C1 /* AddTodoResponse.swift */; };
+		3D2A655327BA84040048C4C1 /* DeleteTodoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A655227BA84040048C4C1 /* DeleteTodoRequest.swift */; };
+		3D2A655527BA84160048C4C1 /* DeleteTodoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A655427BA84160048C4C1 /* DeleteTodoResponse.swift */; };
 		3D53FEDA27B7C8DB00974EEF /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53FED927B7C8DB00974EEF /* LoginRequest.swift */; };
 		3D53FEDC27B7C8F500974EEF /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53FEDB27B7C8F500974EEF /* LoginResponse.swift */; };
 		3D53FEDE27B7D7FD00974EEF /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53FEDD27B7D7FD00974EEF /* SignUpRequest.swift */; };
@@ -25,6 +33,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
+		3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
+		3D2A654A27BA7EA70048C4C1 /* TodoListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRequest.swift; sourceTree = "<group>"; };
+		3D2A654C27BA7EBC0048C4C1 /* TodoListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListResponse.swift; sourceTree = "<group>"; };
+		3D2A654E27BA83DD0048C4C1 /* AddTodoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoRequest.swift; sourceTree = "<group>"; };
+		3D2A655027BA83EF0048C4C1 /* AddTodoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTodoResponse.swift; sourceTree = "<group>"; };
+		3D2A655227BA84040048C4C1 /* DeleteTodoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTodoRequest.swift; sourceTree = "<group>"; };
+		3D2A655427BA84160048C4C1 /* DeleteTodoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTodoResponse.swift; sourceTree = "<group>"; };
 		3D53FED927B7C8DB00974EEF /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
 		3D53FEDB27B7C8F500974EEF /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 		3D53FEDD27B7D7FD00974EEF /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
@@ -65,6 +81,12 @@
 				3D53FEDB27B7C8F500974EEF /* LoginResponse.swift */,
 				3D53FEDD27B7D7FD00974EEF /* SignUpRequest.swift */,
 				3D53FEDF27B7D81200974EEF /* SignUpResponse.swift */,
+				3D2A654A27BA7EA70048C4C1 /* TodoListRequest.swift */,
+				3D2A654C27BA7EBC0048C4C1 /* TodoListResponse.swift */,
+				3D2A654E27BA83DD0048C4C1 /* AddTodoRequest.swift */,
+				3D2A655027BA83EF0048C4C1 /* AddTodoResponse.swift */,
+				3D2A655227BA84040048C4C1 /* DeleteTodoRequest.swift */,
+				3D2A655427BA84160048C4C1 /* DeleteTodoResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -72,6 +94,7 @@
 		3D53FED727B7C82B00974EEF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */,
 				3DBB269027B4098A004C4DE0 /* SignUpViewController.swift */,
 				3DBB268027B3FDF2004C4DE0 /* LoginViewController.swift */,
 				3D53FEE127B7DDBC00974EEF /* TodoCalendarViewController.swift */,
@@ -86,6 +109,7 @@
 				3DBB268227B3FDF2004C4DE0 /* Main.storyboard */,
 				3D7E888127B6A6150038377B /* todo.storyboard */,
 				3DBB268727B3FDF4004C4DE0 /* LaunchScreen.storyboard */,
+				3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -202,6 +226,7 @@
 				3D7E888227B6A6150038377B /* todo.storyboard in Resources */,
 				3DBB268927B3FDF4004C4DE0 /* LaunchScreen.storyboard in Resources */,
 				3DBB268627B3FDF4004C4DE0 /* Assets.xcassets in Resources */,
+				3D2A654927BA79970048C4C1 /* TodoTableViewCell.xib in Resources */,
 				3DBB268427B3FDF2004C4DE0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,13 +283,20 @@
 				3DBB268127B3FDF2004C4DE0 /* LoginViewController.swift in Sources */,
 				3DBB267D27B3FDF2004C4DE0 /* AppDelegate.swift in Sources */,
 				3D53FEDE27B7D7FD00974EEF /* SignUpRequest.swift in Sources */,
+				3D2A654B27BA7EA70048C4C1 /* TodoListRequest.swift in Sources */,
+				3D2A655327BA84040048C4C1 /* DeleteTodoRequest.swift in Sources */,
 				3D53FEE227B7DDBC00974EEF /* TodoCalendarViewController.swift in Sources */,
 				3D53FEDC27B7C8F500974EEF /* LoginResponse.swift in Sources */,
+				3D2A655527BA84160048C4C1 /* DeleteTodoResponse.swift in Sources */,
 				3D53FEE027B7D81200974EEF /* SignUpResponse.swift in Sources */,
+				3D2A654F27BA83DD0048C4C1 /* AddTodoRequest.swift in Sources */,
 				3DC471AB27B8F5DF00B997F2 /* AddTodoViewController.swift in Sources */,
+				3D2A654827BA79970048C4C1 /* TodoTableViewCell.swift in Sources */,
 				3DBB269127B4098A004C4DE0 /* SignUpViewController.swift in Sources */,
+				3D2A655127BA83EF0048C4C1 /* AddTodoResponse.swift in Sources */,
 				3D53FEDA27B7C8DB00974EEF /* LoginRequest.swift in Sources */,
 				3DBB267F27B3FDF2004C4DE0 /* SceneDelegate.swift in Sources */,
+				3D2A654D27BA7EBC0048C4C1 /* TodoListResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
