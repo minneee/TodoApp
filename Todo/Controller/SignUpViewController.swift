@@ -28,26 +28,54 @@ class SignUpViewController: UIViewController {
     
     @IBAction func signUpButtonAction(_ sender: Any) {
         print("회원가입 버튼 클릭")
-        func postSignUp(_ parameters:SignUpRequset) {
-            AF.request("13.209.10.30:4004/user", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
-                .validate()
-                .responseDecodable(of: SignUpResponse.self) { [self] response in
-                    switch response.result {
-                    case .success(let response):
-                        if(response.isSuccess == true){
-                            print(response.message)
-                        }
-                        
-                        else{
-                            print(response.message)
-                        }
-                        
-                    case .failure(let error):
-                        print("서버 통신 실패")
-                    }
-                }
-        }
         
+        let name = nameTextField.text ?? ""
+        let id = idTextField.text ?? ""
+        let pw = pwTextField.text ?? ""
+        let pwCheck = pwCheckTextField.text ?? ""
+        
+        let param = SignUpRequest(username: name, userid: id, userpw: pw, userpw_check: pwCheck)
+        postSignUp(param)
     }
+    
+    
+    func postSignUp(_ parameters:SignUpRequest) {
+        AF.request("http://13.209.10.30:4004/user", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: SignUpResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.isSuccess == true){
+                        print(response.message)
+                        //성공 로직
+                        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+                        let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
+                        self.navigationController?.pushViewController(VC, animated: true)
+                    }
+                    
+                    else{
+                        print(response.message)
+                        //실패 알림
+                        let signUpFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let signUpFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        signUpFailAlert.addAction(signUpFailAction)
+                        self.present(signUpFailAlert, animated: true, completion: nil)
+                    }
+                    
+                case .failure(let error):
+                    print("서버 통신 실패")
+                    let signUpFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let signUpFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    signUpFailAlert.addAction(signUpFailAction)
+                    self.present(signUpFailAlert, animated: true, completion: nil)
+                
+                    
+                
+                }
+            }
+    }
+    
     
 }

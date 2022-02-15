@@ -16,6 +16,8 @@ class TodoCalendarViewController: UIViewController {
     
     @IBOutlet weak var todoTableView: UITableView!
     
+    @IBOutlet weak var plusButton: UIBarButtonItem!
+    
     var todoList: [TodoListResponse] = []
     
     override func viewDidLoad() {
@@ -29,7 +31,12 @@ class TodoCalendarViewController: UIViewController {
         self.todoTableView.dataSource = self
         self.todoTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil),  forCellReuseIdentifier: "TodoTableViewCell")
     }
-
+    @IBAction func plusButtonAction(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "AddTodoViewController") as! AddTodoViewController
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
 }
 
 extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource {

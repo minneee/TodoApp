@@ -12,7 +12,6 @@ struct SignUpResponse: Decodable {
     var isSuccess: Bool
     var code: Int
     var message: String?
-    var Error: String?
     var username:String?
     var userid: String?
 }

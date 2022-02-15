@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct SignUpRequset: Encodable {
+struct SignUpRequest: Encodable {
     var username: String
     var userid: String
     var userpw: String

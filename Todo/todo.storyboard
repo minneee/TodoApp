@@ -61,8 +61,16 @@
                             <constraint firstItem="yvg-69-Bca" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="tcR-Hl-yga"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="1Vh-t3-102"/>
+                    <navigationItem key="navigationItem" id="Qcs-X7-ZpE">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="hYm-EK-Y8X">
+                            <color key="tintColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="plusButtonAction:" destination="Y6W-OH-hqX" id="eBC-2c-k7k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="plusButton" destination="hYm-EK-Y8X" id="i3C-4s-s6l"/>
                         <outlet property="todoCalendar" destination="yvg-69-Bca" id="lBG-9Z-JVe"/>
                         <outlet property="todoTableView" destination="wCk-Cp-c57" id="bL8-NO-AH7"/>
                     </connections>
@@ -93,6 +101,9 @@
                                 <rect key="frame" x="20" y="134" width="320" height="216"/>
                                 <color key="tintColor" red="0.48025592540000001" green="0.55749478880000003" blue="0.97735267879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <locale key="locale" localeIdentifier="ko_KR"/>
+                                <connections>
+                                    <action selector="datePickerAction:" destination="0lr-qX-h5Q" eventType="valueChanged" id="hfc-ti-L54"/>
+                                </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-wP-uZp">
                                 <rect key="frame" x="20" y="775" width="374" height="40"/>
@@ -107,6 +118,9 @@
                                         <color key="backgroundColor" red="0.29758329049999999" green="0.4743610379" blue="0.88316360949999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="addButtonAction:" destination="0lr-qX-h5Q" eventType="touchUpInside" id="ISE-fb-DZh"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-su-zSn">
                                 <rect key="frame" x="20" y="380" width="374" height="350"/>
@@ -136,6 +150,12 @@
                             <constraint firstItem="Fxo-su-zSn" firstAttribute="top" secondItem="dQK-SF-3iH" secondAttribute="bottom" constant="30" id="zXS-JW-tp9"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addButton" destination="m1B-wP-uZp" id="0Nj-0l-gx4"/>
+                        <outlet property="contentTextField" destination="Fxo-su-zSn" id="N3U-Ck-ya9"/>
+                        <outlet property="datePicker" destination="dQK-SF-3iH" id="527-VS-wRt"/>
+                        <outlet property="titleTextField" destination="qkX-9w-DeC" id="W82-2d-BIm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgF-Dr-6hF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -161,6 +181,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
