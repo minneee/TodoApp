@@ -18,30 +18,31 @@ class AddTodoViewController: UIViewController {
     
     @IBOutlet weak var addButton: UIButton!
     
-    static var selectedDate = NSDate()
+    var todoDate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let date = NSDate()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        todoDate = formatter.string(from: date as Date)
 
     }
-    /*
-    @IBAction func datePickerAction(_ sender: Any) {
+    
+    @IBAction func datePickerAction(_ sender: UIDatePicker) {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/mm/dd HH:mm"
-        selectedDate = formatter.string(from: datePicker.date)
-    }*/
+        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        todoDate = formatter.string(from: sender.date)
+    }
     
     @IBAction func addButtonAction(_ sender: Any) {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/mm/dd HH:mm"
-        
         let title = titleTextField.text ?? ""
-        let date = formatter.string(from: datePicker.date)
         let content = contentTextField.text ?? ""
+        let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         
-        let param = AddTodoRequest(title: title, content: content, userid: "id", data: date)
-        
+        let param = AddTodoRequest(title: title, content: content, userid: userid, date: todoDate ?? "")
+        print(todoDate)
+        print(userid)
         postAddTodo(param)
     }
 

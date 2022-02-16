@@ -49,6 +49,8 @@ class LoginViewController: UIViewController {
                     if(response.isSuccess == true){
                         print("로그인 성공")
                         //성공 로직
+                        UserDefaults.standard.set(self.idTextField.text, forKey: "id")
+                        print(UserDefaults.standard.string(forKey: "id"))
                         let storyBoard = UIStoryboard(name: "todo", bundle: nil)
                         let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
                         self.navigationController?.pushViewController(VC, animated: true)
