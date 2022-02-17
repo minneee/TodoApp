@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0lr-qX-h5Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Todo Calendar View Controller-->
+        <!--Item-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="TodoCalendarViewController" id="Y6W-OH-hqX" customClass="TodoCalendarViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,22 +45,23 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wCk-Cp-c57">
-                                <rect key="frame" x="0.0" y="408" width="414" height="488"/>
+                                <rect key="frame" x="0.0" y="408" width="414" height="403"/>
                                 <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="wCk-Cp-c57" firstAttribute="top" secondItem="yvg-69-Bca" secondAttribute="bottom" id="Fpe-cu-7dD"/>
+                            <constraint firstItem="wCk-Cp-c57" firstAttribute="top" secondItem="yvg-69-Bca" secondAttribute="bottom" id="3QH-iq-EpX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="wCk-Cp-c57" secondAttribute="bottom" constant="2" id="54d-Te-Sm2"/>
                             <constraint firstItem="wCk-Cp-c57" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="g0f-49-qPt"/>
                             <constraint firstItem="wCk-Cp-c57" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="gkc-TL-SFR"/>
-                            <constraint firstAttribute="bottom" secondItem="wCk-Cp-c57" secondAttribute="bottom" id="hZH-Kp-Uss"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ouT-CZ-IOw"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qZm-3g-7Cm"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="tcR-Hl-yga"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="YOJ-vp-XJR"/>
                     <navigationItem key="navigationItem" id="Qcs-X7-ZpE">
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="hYm-EK-Y8X">
                             <color key="tintColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -77,12 +78,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="828.98550724637687" y="75.669642857142847"/>
+            <point key="canvasLocation" x="2649.275362318841" y="75.669642857142847"/>
         </scene>
-        <!--Add Todo View Controller-->
+        <!--Item-->
         <scene sceneID="XnM-Te-5Rc">
             <objects>
-                <viewController storyboardIdentifier="AddTodoViewController" id="0lr-qX-h5Q" customClass="AddTodoViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddTodoViewController" hidesBottomBarWhenPushed="YES" id="0lr-qX-h5Q" customClass="AddTodoViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ii-ds-iCa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -150,6 +151,7 @@
                             <constraint firstItem="Fxo-su-zSn" firstAttribute="top" secondItem="dQK-SF-3iH" secondAttribute="bottom" constant="30" id="zXS-JW-tp9"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="ySV-B8-7gI"/>
                     <connections>
                         <outlet property="addButton" destination="m1B-wP-uZp" id="0Nj-0l-gx4"/>
                         <outlet property="contentTextField" destination="Fxo-su-zSn" id="N3U-Ck-ya9"/>
@@ -159,12 +161,31 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgF-Dr-6hF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592.753623188406" y="75.669642857142847"/>
+            <point key="canvasLocation" x="3439" y="76"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="0i7-BX-OrS">
+            <objects>
+                <tabBarController id="sP3-TH-pCy" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oqX-LE-FQo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="8vI-9i-xdb" kind="relationship" relationship="viewControllers" id="8UP-lL-qQy"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HBg-fU-ndP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="872" y="76"/>
+        </scene>
+        <!--Home-->
         <scene sceneID="vrC-pk-OUj">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8vI-9i-xdb" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" selectedImage="calendar" catalog="system" id="hEG-LY-sVa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sek-qX-pkZ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -172,15 +193,16 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="poW-0U-yFo"/>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="3dz-DD-Vqd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rSP-Tl-5oF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="27.536231884057973" y="76.339285714285708"/>
+            <point key="canvasLocation" x="1772" y="76"/>
         </scene>
     </scenes>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

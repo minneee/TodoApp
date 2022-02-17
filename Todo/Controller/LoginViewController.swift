@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  Todo
 //
 //  Created by mini on 2022/02/09.
@@ -18,9 +18,20 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var goSignUpButton: UIButton!
     
+    @IBOutlet weak var autoLoginButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if(UserDefaults.standard.string(forKey: "id") != nil){
+            let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+            let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
+            self.navigationController?.pushViewController(VC, animated: true)
+        }
     }
     
     @IBAction func goSignUpButtonAction(_ sender: Any) {
@@ -29,6 +40,11 @@ class LoginViewController: UIViewController {
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
 
+    @IBAction func autoLoginButtonAction(_ sender: UIButton) {
+        sender.isSelected.toggle()
+    }
+    
+    
     @IBAction func loginButtonAction(_ sender: Any) {
         print("로그인 클릭")
         
