@@ -27,11 +27,14 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(UserDefaults.standard.string(forKey: "id") != nil){
+        if(UserDefaults.standard.string(forKey: "auto") == "auto"){
             let storyBoard = UIStoryboard(name: "todo", bundle: nil)
             let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
             self.navigationController?.pushViewController(VC, animated: true)
         }
+        
+        idTextField.text = ""
+        pwTextField.text = ""
     }
     
     @IBAction func goSignUpButtonAction(_ sender: Any) {
@@ -42,6 +45,11 @@ class LoginViewController: UIViewController {
 
     @IBAction func autoLoginButtonAction(_ sender: UIButton) {
         sender.isSelected.toggle()
+        
+        if sender.isSelected == true {
+            //자동로그인 선택
+            UserDefaults.standard.set("auto", forKey: "auto")
+        }
     }
     
     

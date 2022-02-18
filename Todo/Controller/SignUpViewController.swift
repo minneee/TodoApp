@@ -48,9 +48,7 @@ class SignUpViewController: UIViewController {
                     if(response.isSuccess == true){
                         print(response.message)
                         //성공 로직
-                        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
-                        let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
-                        self.navigationController?.pushViewController(VC, animated: true)
+                        self.navigationController?.popViewController(animated: true)
                     }
                     
                     else{

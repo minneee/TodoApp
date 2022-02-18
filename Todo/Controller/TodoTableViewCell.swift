@@ -9,6 +9,13 @@ import UIKit
 
 class TodoTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var cellTitleLabel: UILabel!
+    
+    @IBOutlet weak var cellTimeLabel: UILabel!
+    
+    @IBOutlet weak var cellContentLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

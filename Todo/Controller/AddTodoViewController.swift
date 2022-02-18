@@ -55,13 +55,26 @@ class AddTodoViewController: UIViewController {
                     if(response.isSuccess == true){
                         print("투두 추가 성공")
                         print(response.message)
+                        self.navigationController?.popViewController(animated: true)
                     }
                     else{
                         print("투두 추가 실패")
-                        print(response.message)
+                        
+                        let addTodoFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let addTodoFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        addTodoFailAlert.addAction(addTodoFailAction)
+                        self.present(addTodoFailAlert, animated: true, completion: nil)
                     }
+                    
                 case .failure(let error):
                     print("서버 통신 실패\(error.localizedDescription)")
+                    
+                    let FailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    FailAlert.addAction(FailAction)
+                    self.present(FailAlert, animated: true, completion: nil)
                 }
                 
             }

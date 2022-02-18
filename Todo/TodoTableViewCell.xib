@@ -18,13 +18,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="제목이 들어가는 자리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EU4-nY-xHb">
-                        <rect key="frame" x="20" y="13" width="117" height="17"/>
+                        <rect key="frame" x="20" y="13" width="413" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="todo 내용이 들어갑니당~~~" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBF-9x-Up9">
-                        <rect key="frame" x="20" y="53" width="160" height="49"/>
+                        <rect key="frame" x="20" y="53" width="413" height="49"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -39,15 +39,22 @@
                 <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
                     <constraint firstItem="EU4-nY-xHb" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="0w5-sO-9cb"/>
+                    <constraint firstAttribute="trailing" secondItem="gBF-9x-Up9" secondAttribute="trailing" constant="20" id="C7a-XR-NdN"/>
                     <constraint firstItem="gBF-9x-Up9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="J0I-MG-WEd"/>
                     <constraint firstItem="EU4-nY-xHb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Krq-Z4-bMv"/>
                     <constraint firstItem="gBF-9x-Up9" firstAttribute="top" secondItem="Euj-TA-qX2" secondAttribute="bottom" constant="5" id="Zx8-Sg-pgh"/>
                     <constraint firstItem="Euj-TA-qX2" firstAttribute="top" secondItem="EU4-nY-xHb" secondAttribute="bottom" constant="3" id="aS5-Vz-cvE"/>
                     <constraint firstItem="Euj-TA-qX2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="btw-zu-V0g"/>
                     <constraint firstAttribute="bottom" secondItem="gBF-9x-Up9" secondAttribute="bottom" constant="13" id="hjX-TW-JlR"/>
+                    <constraint firstAttribute="trailing" secondItem="EU4-nY-xHb" secondAttribute="trailing" constant="20" id="maE-Cm-kRZ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="cellContentLabel" destination="gBF-9x-Up9" id="KWz-p5-w7q"/>
+                <outlet property="cellTimeLabel" destination="Euj-TA-qX2" id="uzk-g0-xKL"/>
+                <outlet property="cellTitleLabel" destination="EU4-nY-xHb" id="2vs-2x-FFE"/>
+            </connections>
             <point key="canvasLocation" x="234.05797101449278" y="111.49553571428571"/>
         </tableViewCell>
     </objects>

@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yvg-69-Bca" customClass="FSCalendar">
-                                <rect key="frame" x="0.0" y="108" width="414" height="300"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="300"/>
                                 <color key="backgroundColor" red="0.94957387397223658" green="0.95897148157528822" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="hfG-PM-uDb"/>
@@ -45,7 +45,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wCk-Cp-c57">
-                                <rect key="frame" x="0.0" y="408" width="414" height="403"/>
+                                <rect key="frame" x="0.0" y="388" width="414" height="423"/>
                                 <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableView>
                         </subviews>
@@ -58,19 +58,26 @@
                             <constraint firstItem="wCk-Cp-c57" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="gkc-TL-SFR"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="ouT-CZ-IOw"/>
                             <constraint firstItem="yvg-69-Bca" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="qZm-3g-7Cm"/>
-                            <constraint firstItem="yvg-69-Bca" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="20" id="tcR-Hl-yga"/>
+                            <constraint firstItem="yvg-69-Bca" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="tcR-Hl-yga"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="YOJ-vp-XJR"/>
                     <navigationItem key="navigationItem" id="Qcs-X7-ZpE">
-                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="hYm-EK-Y8X">
+                        <barButtonItem key="leftBarButtonItem" title="로그아웃" id="hYm-EK-Y8X">
                             <color key="tintColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
-                                <action selector="plusButtonAction:" destination="Y6W-OH-hqX" id="eBC-2c-k7k"/>
+                                <action selector="logoutButtonAction:" destination="Y6W-OH-hqX" id="Awc-HH-yuH"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="Cbn-56-RXx">
+                            <color key="tintColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <connections>
+                                <action selector="plusButtonAction:" destination="Y6W-OH-hqX" id="YnH-2M-Q1e"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="logoutButton" destination="hYm-EK-Y8X" id="Uve-JN-qI7"/>
                         <outlet property="plusButton" destination="hYm-EK-Y8X" id="i3C-4s-s6l"/>
                         <outlet property="todoCalendar" destination="yvg-69-Bca" id="lBG-9Z-JVe"/>
                         <outlet property="todoTableView" destination="wCk-Cp-c57" id="bL8-NO-AH7"/>
