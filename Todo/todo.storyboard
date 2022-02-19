@@ -87,7 +87,7 @@
             </objects>
             <point key="canvasLocation" x="2649.275362318841" y="75.669642857142847"/>
         </scene>
-        <!--Item-->
+        <!--Add Todo View Controller-->
         <scene sceneID="XnM-Te-5Rc">
             <objects>
                 <viewController storyboardIdentifier="AddTodoViewController" hidesBottomBarWhenPushed="YES" id="0lr-qX-h5Q" customClass="AddTodoViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -114,7 +114,7 @@
                                 </connections>
                             </datePicker>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1B-wP-uZp">
-                                <rect key="frame" x="20" y="775" width="374" height="40"/>
+                                <rect key="frame" x="20" y="792" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="HDX-yo-5Zf"/>
                                 </constraints>
@@ -131,11 +131,8 @@
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-su-zSn">
-                                <rect key="frame" x="20" y="380" width="374" height="350"/>
+                                <rect key="frame" x="20" y="380" width="374" height="382"/>
                                 <color key="backgroundColor" red="0.9529411793" green="0.96078431610000004" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="350" id="B6h-Xl-MZv"/>
-                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -151,14 +148,14 @@
                             <constraint firstItem="qkX-9w-DeC" firstAttribute="leading" secondItem="2NF-gI-NKH" secondAttribute="leading" constant="20" id="8Su-ZQ-nL7"/>
                             <constraint firstItem="qkX-9w-DeC" firstAttribute="top" secondItem="2NF-gI-NKH" secondAttribute="top" constant="30" id="DhY-9W-6nC"/>
                             <constraint firstItem="Fxo-su-zSn" firstAttribute="leading" secondItem="2NF-gI-NKH" secondAttribute="leading" constant="20" id="Qfn-gL-YKL"/>
+                            <constraint firstItem="2NF-gI-NKH" firstAttribute="bottom" secondItem="m1B-wP-uZp" secondAttribute="bottom" constant="30" id="YZS-uw-xfi"/>
+                            <constraint firstItem="m1B-wP-uZp" firstAttribute="top" secondItem="Fxo-su-zSn" secondAttribute="bottom" constant="30" id="aH2-38-XhK"/>
                             <constraint firstItem="2NF-gI-NKH" firstAttribute="trailing" secondItem="qkX-9w-DeC" secondAttribute="trailing" constant="20" id="eK3-jb-acb"/>
-                            <constraint firstItem="m1B-wP-uZp" firstAttribute="top" secondItem="Fxo-su-zSn" secondAttribute="bottom" constant="45" id="fR2-3A-C2k"/>
                             <constraint firstItem="dQK-SF-3iH" firstAttribute="top" secondItem="qkX-9w-DeC" secondAttribute="bottom" constant="20" id="ifv-OT-nDJ"/>
                             <constraint firstItem="2NF-gI-NKH" firstAttribute="trailing" secondItem="m1B-wP-uZp" secondAttribute="trailing" constant="20" id="oe0-yv-WL5"/>
                             <constraint firstItem="Fxo-su-zSn" firstAttribute="top" secondItem="dQK-SF-3iH" secondAttribute="bottom" constant="30" id="zXS-JW-tp9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="ySV-B8-7gI"/>
                     <connections>
                         <outlet property="addButton" destination="m1B-wP-uZp" id="0Nj-0l-gx4"/>
                         <outlet property="contentTextField" destination="Fxo-su-zSn" id="N3U-Ck-ya9"/>
@@ -168,7 +165,70 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zgF-Dr-6hF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3439" y="76"/>
+            <point key="canvasLocation" x="3437.68115942029" y="75.669642857142847"/>
+        </scene>
+        <!--Todo Detail View Controller-->
+        <scene sceneID="ChQ-1p-P6Z">
+            <objects>
+                <viewController storyboardIdentifier="TodoDetailViewController" id="RPV-pf-cDC" customClass="TodoDetailViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WIc-Af-oif">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="투두 제목이 들어간당" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTQ-nz-seY">
+                                <rect key="frame" x="20" y="59" width="374" height="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/01/01 00:11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJu-is-yYe">
+                                <rect key="frame" x="20" y="96" width="374" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="투두의 자세한 내용이 들거가게 되는 자리입니다 하하하하하하ㅏ하하하핳" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3l-M8-u77">
+                                <rect key="frame" x="20" y="153" width="374" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hp-6H-s0i">
+                                <rect key="frame" x="20" y="802" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="NYk-rD-lmf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="삭제하기"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Deb-ze-zWJ"/>
+                        <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="f3l-M8-u77" secondAttribute="trailing" constant="20" id="AK9-02-o23"/>
+                            <constraint firstItem="TJu-is-yYe" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="E5P-7M-BRh"/>
+                            <constraint firstItem="Deb-ze-zWJ" firstAttribute="trailing" secondItem="TJu-is-yYe" secondAttribute="trailing" constant="20" id="F0t-xM-gsO"/>
+                            <constraint firstItem="TJu-is-yYe" firstAttribute="top" secondItem="kTQ-nz-seY" secondAttribute="bottom" constant="15" id="MMS-wj-CpE"/>
+                            <constraint firstItem="Deb-ze-zWJ" firstAttribute="trailing" secondItem="1hp-6H-s0i" secondAttribute="trailing" constant="20" id="MbD-fk-oVm"/>
+                            <constraint firstItem="f3l-M8-u77" firstAttribute="top" secondItem="TJu-is-yYe" secondAttribute="bottom" constant="40" id="PWO-i3-IxB"/>
+                            <constraint firstItem="f3l-M8-u77" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="Pu1-N5-kb3"/>
+                            <constraint firstItem="Deb-ze-zWJ" firstAttribute="bottom" secondItem="1hp-6H-s0i" secondAttribute="bottom" constant="20" id="aSG-ul-oGd"/>
+                            <constraint firstItem="Deb-ze-zWJ" firstAttribute="trailing" secondItem="kTQ-nz-seY" secondAttribute="trailing" constant="20" id="cvT-d0-ZXK"/>
+                            <constraint firstItem="kTQ-nz-seY" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="gZf-Xh-tJ0"/>
+                            <constraint firstItem="1hp-6H-s0i" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="jME-ba-cd3"/>
+                            <constraint firstItem="kTQ-nz-seY" firstAttribute="top" secondItem="Deb-ze-zWJ" secondAttribute="top" constant="15" id="ra1-kl-sMu"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailContentLabel" destination="f3l-M8-u77" id="weC-cY-U7k"/>
+                        <outlet property="detailDateLabel" destination="TJu-is-yYe" id="AGA-2s-yLu"/>
+                        <outlet property="detailTitleLabel" destination="kTQ-nz-seY" id="SSI-wW-zhd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oz8-No-aPf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4220" y="76"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="0i7-BX-OrS">
