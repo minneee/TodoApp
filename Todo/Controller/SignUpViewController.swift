@@ -37,7 +37,7 @@ class SignUpViewController: UIViewController {
         let param = SignUpRequest(username: name, userid: id, userpw: pw, userpw_check: pwCheck)
         postSignUp(param)
     }
-    
+
     
     func postSignUp(_ parameters:SignUpRequest) {
         AF.request("http://13.209.10.30:4004/user", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)

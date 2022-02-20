@@ -9,7 +9,13 @@ import UIKit
 import Alamofire
 import FSCalendar
 
-
+struct selectedtodo {
+    var no: Int
+    var title: String
+    var content: String
+    var userid: String
+    var date: String
+}
 class TodoCalendarViewController: UIViewController {
 
     @IBOutlet weak var todoCalendar: FSCalendar!
@@ -21,6 +27,8 @@ class TodoCalendarViewController: UIViewController {
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     var todoList: [UserTodoList] = []
+    var selectedList: [selectedtodo] = []
+    
     var selectedDate = ""
     
     override func viewDidLoad() {
@@ -72,6 +80,26 @@ class TodoCalendarViewController: UIViewController {
                         print("투두 조회 성공")
                         //성공 로직
                         self.todoList = response.todo
+                        
+                        //오늘 날짜 투두를 새 배열에 저장
+                        var count = 0
+                        for index in 0..<todoList.count {
+                            print(index)
+                            let arr = todoList[index].date.components(separatedBy: " ")
+                            if arr[0] == selectedDate {
+                                selectedList[count].no = todoList[index].no
+                                selectedList[count].userid = todoList[index].userid
+                                selectedList[count].title = todoList[index].title
+                                selectedList[count].content = todoList[index].content
+                                selectedList[count].date = todoList[index].date
+                                count += 1
+                                print(selectedList[count].no)
+                            }
+                        }
+                        
+                        print(">>>>>>\(selectedList)")
+                        
+                        
                         self.todoTableView.reloadData()
                     }
                     else{
@@ -145,5 +173,19 @@ extension TodoCalendarViewController: FSCalendarDelegate {
         selectedDate = dateFormatter.string(from: date)
         print(selectedDate)
         
+        //선택된 날짜의 투두를 배열에 저장
+        for index in 0..<selectedList.count {
+            let arr = todoList[index].date.components(separatedBy: " ")
+            if arr[0] == selectedDate {
+                selectedList[index].no = todoList[index].no
+                selectedList[index].userid = todoList[index].userid
+                selectedList[index].title = todoList[index].title
+                selectedList[index].content = todoList[index].content
+                selectedList[index].date = todoList[index].date
+            }
+        }
+        
+        print(">>>>>>\(selectedList.count)")
+        todoTableView.reloadData()
     }
 }
