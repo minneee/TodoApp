@@ -51,11 +51,19 @@ class TodoCalendarViewController: UIViewController {
         self.todoTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil),  forCellReuseIdentifier: "TodoTableViewCell")
         
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-        
         let param = TodoListRequest(userid: userid)
         postTodoList(param)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 0)
+        let userid = UserDefaults.standard.string(forKey: "id") ?? ""
+        let param = TodoListRequest(userid: userid)
+        postTodoList(param)
+        
+    }
     
     @IBAction func plusButtonAction(_ sender: Any) {
         let storyBoard = UIStoryboard(name: "todo", bundle: nil)
@@ -81,26 +89,27 @@ class TodoCalendarViewController: UIViewController {
                         //성공 로직
                         self.todoList = response.todo
                         
-                        //오늘 날짜 투두를 새 배열에 저장
-                        var count = 0
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy/MM/dd"
+                        selectedDate = dateFormatter.string(from: Date())
+                              
+                        //선택 된 날짜 투두를 새 배열에 저장
+                        self.selectedList.removeAll()
+                        
                         for index in 0..<todoList.count {
-                            print(index)
                             let arr = todoList[index].date.components(separatedBy: " ")
                             if arr[0] == selectedDate {
-                                selectedList[count].no = todoList[index].no
-                                selectedList[count].userid = todoList[index].userid
-                                selectedList[count].title = todoList[index].title
-                                selectedList[count].content = todoList[index].content
-                                selectedList[count].date = todoList[index].date
-                                count += 1
-                                print(selectedList[count].no)
+                                print("새 배열에 저장")
+                                let data = todoList[index]
+                                let todoData: selectedtodo = selectedtodo(no: data.no, title: data.title, content: data.content, userid: data.userid, date: data.date)
+                                self.selectedList.append(todoData)
                             }
                         }
                         
-                        print(">>>>>>\(selectedList)")
-                        
+                        print("!!!!!!!\(selectedList)")
                         
                         self.todoTableView.reloadData()
+                        
                     }
                     else{
                         print("투두 조회 실패")
@@ -129,13 +138,13 @@ class TodoCalendarViewController: UIViewController {
 extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return todoList.count
+        return selectedList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "TodoTableViewCell", for: indexPath) as! TodoTableViewCell
         
-        let todoData = self.todoList[indexPath.row]
+        let todoData = self.selectedList[indexPath.row]
         print(todoData.date)
         let arr =  todoData.date.components(separatedBy: " ")
         print("\(arr), \(arr[0])")
@@ -168,24 +177,28 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
 
 extension TodoCalendarViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 1)
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         selectedDate = dateFormatter.string(from: date)
         print(selectedDate)
         
+        //이전 데이터 누적을 피하기 위해 배열 초기화
+        self.selectedList.removeAll()
+        
         //선택된 날짜의 투두를 배열에 저장
-        for index in 0..<selectedList.count {
+        for index in 0..<todoList.count {
             let arr = todoList[index].date.components(separatedBy: " ")
             if arr[0] == selectedDate {
-                selectedList[index].no = todoList[index].no
-                selectedList[index].userid = todoList[index].userid
-                selectedList[index].title = todoList[index].title
-                selectedList[index].content = todoList[index].content
-                selectedList[index].date = todoList[index].date
+                print("새 배열에 저장")
+                let data = todoList[index]
+                let todoData: selectedtodo = selectedtodo(no: data.no, title: data.title, content: data.content, userid: data.userid, date: data.date)
+                self.selectedList.append(todoData)
             }
         }
         
-        print(">>>>>>\(selectedList.count)")
+        print(">>>>>>\(selectedList)")
         todoTableView.reloadData()
     }
 }
