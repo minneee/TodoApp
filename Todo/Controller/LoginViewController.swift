@@ -75,6 +75,11 @@ class LoginViewController: UIViewController {
                         let storyBoard = UIStoryboard(name: "todo", bundle: nil)
                         let VC = storyBoard.instantiateViewController(identifier: "CalendarTabBar")
                         self.navigationController?.pushViewController(VC, animated: true)
+                        
+                        //루트 컨트롤러 변경
+                        let storyBD = UIStoryboard(name: "todo", bundle: nil)
+                        let VC2 = storyBD.instantiateViewController(identifier: "CalendarTabBar")
+                        changeRootViewController(VC2)
                     }
                     
                     else{
@@ -97,6 +102,16 @@ class LoginViewController: UIViewController {
                     self.present(loginFailAlert, animated: true, completion: nil)
                 }
                 
+            }
+    }
+    
+    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = viewControllerToPresent
+                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            } else {
+                viewControllerToPresent.modalPresentationStyle = .overFullScreen
+                self.present(viewControllerToPresent, animated: true, completion: nil)
             }
     }
  
