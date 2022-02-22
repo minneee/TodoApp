@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sP3-TH-pCy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="TodoCalendarViewController" id="Y6W-OH-hqX" customClass="TodoCalendarViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +62,9 @@
                             <constraint firstItem="yvg-69-Bca" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="tcR-Hl-yga"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="YOJ-vp-XJR"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="calendar" catalog="system" id="YOJ-vp-XJR">
+                        <imageReference key="selectedImage" image="calendar" catalog="system" symbolScale="medium"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="Qcs-X7-ZpE">
                         <barButtonItem key="leftBarButtonItem" title="로그아웃" id="hYm-EK-Y8X">
                             <color key="tintColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -233,15 +236,15 @@
         <!--Tab Bar Controller-->
         <scene sceneID="0i7-BX-OrS">
             <objects>
-                <tabBarController id="sP3-TH-pCy" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CalendarTabBar" id="sP3-TH-pCy" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oqX-LE-FQo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8vI-9i-xdb" kind="relationship" relationship="viewControllers" id="8UP-lL-qQy"/>
+                        <segue destination="8vI-9i-xdb" kind="relationship" relationship="viewControllers" id="hNn-yc-5B3"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HBg-fU-ndP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -251,7 +254,7 @@
         <!--Home-->
         <scene sceneID="vrC-pk-OUj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="8vI-9i-xdb" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="8vI-9i-xdb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" selectedImage="calendar" catalog="system" id="hEG-LY-sVa"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sek-qX-pkZ">

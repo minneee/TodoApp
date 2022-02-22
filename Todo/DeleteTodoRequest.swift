@@ -9,6 +9,6 @@ import Foundation
 import UIKit
 
 struct DeleteTodoRequest: Encodable {
-    var no: String
+    var no: Int
     var userid: String
 }

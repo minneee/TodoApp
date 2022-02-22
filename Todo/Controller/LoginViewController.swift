@@ -32,9 +32,6 @@ class LoginViewController: UIViewController {
             let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
             self.navigationController?.pushViewController(VC, animated: true)
         }
-        
-        idTextField.text = ""
-        pwTextField.text = ""
     }
     
     @IBAction func goSignUpButtonAction(_ sender: Any) {
@@ -76,7 +73,7 @@ class LoginViewController: UIViewController {
                         UserDefaults.standard.set(self.idTextField.text, forKey: "id")
                         print(UserDefaults.standard.string(forKey: "id"))
                         let storyBoard = UIStoryboard(name: "todo", bundle: nil)
-                        let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
+                        let VC = storyBoard.instantiateViewController(identifier: "CalendarTabBar")
                         self.navigationController?.pushViewController(VC, animated: true)
                     }
                     

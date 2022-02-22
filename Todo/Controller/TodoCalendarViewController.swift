@@ -26,11 +26,13 @@ class TodoCalendarViewController: UIViewController {
     
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
+    
+    
     var todoList: [UserTodoList] = []
     var selectedList: [selectedtodo] = []
     
     var selectedDate = ""
-    
+    var nowDate = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,11 +55,21 @@ class TodoCalendarViewController: UIViewController {
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let param = TodoListRequest(userid: userid)
         postTodoList(param)
+        
+        //탭바 설정
+        self.tabBarController?.tabBar.layer.borderWidth = 0.5
+        self.tabBarController?.tabBar.layer.borderColor = CGColor(red: 153, green: 153, blue: 153, alpha: 1)
+        
+        /*
+        //루트 컨트롤러 변경
+        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+        let VC = storyBoard.instantiateViewController(identifier: "NavController")
+        changeRootViewController(VC)
+         */
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 0)
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let param = TodoListRequest(userid: userid)
@@ -88,11 +100,11 @@ class TodoCalendarViewController: UIViewController {
                         print("투두 조회 성공")
                         //성공 로직
                         self.todoList = response.todo
-                        
+                        /*
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "yyyy/MM/dd"
                         selectedDate = dateFormatter.string(from: Date())
-                              
+                          */
                         //선택 된 날짜 투두를 새 배열에 저장
                         self.selectedList.removeAll()
                         
@@ -133,6 +145,51 @@ class TodoCalendarViewController: UIViewController {
             }
     }
     
+    func postDeleteTodo(_ parameters: DeleteTodoRequest) {
+        AF.request("http://13.209.10.30:4004/todo/delete", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: DeleteTodoResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if response.isSuccess == true {
+                        print(response.message)
+                        //성공 로직
+                        let userid = UserDefaults.standard.string(forKey: "id") ?? ""
+                        let param = TodoListRequest(userid: userid)
+                        postTodoList(param)
+                    }
+                    else{
+                        print(response.message)
+                        //실패 로직
+                        let deleteFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let deleteFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        deleteFailAlert.addAction(deleteFailAction)
+                        self.present(deleteFailAlert, animated: true, completion: nil)
+                    }
+                
+                case .failure(let error):
+                    print("서버 통신 실패\(error.localizedDescription)")
+                    let signUpFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let signUpFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    signUpFailAlert.addAction(signUpFailAction)
+                    self.present(signUpFailAlert, animated: true, completion: nil)
+                }
+            }
+        
+    }
+    
+    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = viewControllerToPresent
+                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            } else {
+                viewControllerToPresent.modalPresentationStyle = .overFullScreen
+                self.present(viewControllerToPresent, animated: true, completion: nil)
+            }
+        }
+
 }
 
 extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource {
@@ -164,15 +221,33 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
         let VC = storyBoard.instantiateViewController(withIdentifier: "TodoDetailViewController") as! TodoDetailViewController
         self.navigationController?.pushViewController(VC, animated: true)
         
-        let detailTitle = self.todoList[indexPath.row].title
-        let detailDate = self.todoList[indexPath.row].date
-        let deTailContent = self.todoList[indexPath.row].content
+        let detailTitle = self.selectedList[indexPath.row].title
+        let detailDate = self.selectedList[indexPath.row].date
+        let deTailContent = self.selectedList[indexPath.row].content
         
         VC.receiveTitle = detailTitle
         VC.receiveDate = detailDate
         VC.receiveContent = deTailContent
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("투두 삭제 버튼 클릭")
+            //selectedList.remove(at: indexPath.row)
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            let userid = UserDefaults.standard.string(forKey: "id") ?? ""
+            let no = selectedList[indexPath.row].no
+            let param = DeleteTodoRequest(no: no, userid: userid)
+            postDeleteTodo(param)
+            
+            
+        }
+    }
 }
 
 extension TodoCalendarViewController: FSCalendarDelegate {
