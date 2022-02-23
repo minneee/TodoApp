@@ -60,12 +60,7 @@ class TodoCalendarViewController: UIViewController {
         self.tabBarController?.tabBar.layer.borderWidth = 0.5
         self.tabBarController?.tabBar.layer.borderColor = CGColor(red: 153, green: 153, blue: 153, alpha: 1)
         
-        /*
-        //루트 컨트롤러 변경
-        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
-        let VC = storyBoard.instantiateViewController(identifier: "NavController")
-        changeRootViewController(VC)
-         */
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,7 +82,24 @@ class TodoCalendarViewController: UIViewController {
         UserDefaults.standard.removeObject(forKey: "auto")
         UserDefaults.standard.removeObject(forKey: "id")
 
-        self.navigationController?.popViewController(animated: true)
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.navigationController?.pushViewController(VC, animated: true)
+        
+        //루트 컨트롤러 변경
+        let storyBD = UIStoryboard(name: "Main", bundle: nil)
+        let VC2 = storyBD.instantiateViewController(identifier: "NavController")
+        changeRootViewController(VC2)
+    }
+    
+    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = viewControllerToPresent
+                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            } else {
+                viewControllerToPresent.modalPresentationStyle = .overFullScreen
+                self.present(viewControllerToPresent, animated: true, completion: nil)
+            }
     }
     
     func postTodoList(_ parameters: TodoListRequest) {
@@ -100,11 +112,7 @@ class TodoCalendarViewController: UIViewController {
                         print("투두 조회 성공")
                         //성공 로직
                         self.todoList = response.todo
-                        /*
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "yyyy/MM/dd"
-                        selectedDate = dateFormatter.string(from: Date())
-                          */
+                        
                         //선택 된 날짜 투두를 새 배열에 저장
                         self.selectedList.removeAll()
                         
@@ -215,11 +223,15 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
         
         let detailTitle = self.selectedList[indexPath.row].title
         let detailDate = self.selectedList[indexPath.row].date
-        let deTailContent = self.selectedList[indexPath.row].content
+        let detailContent = self.selectedList[indexPath.row].content
+        let detailNo = self.selectedList[indexPath.row].no
         
         VC.receiveTitle = detailTitle
         VC.receiveDate = detailDate
-        VC.receiveContent = deTailContent
+        VC.receiveContent = detailContent
+        VC.receiveNo = detailNo
+        
+        
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

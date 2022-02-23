@@ -27,6 +27,7 @@ class AddTodoViewController: UIViewController {
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         todoDate = formatter.string(from: date as Date)
 
+        self.navigationItem.title = "할일 추가"
     }
     
     @IBAction func datePickerAction(_ sender: UIDatePicker) {

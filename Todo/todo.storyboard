@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--Todo-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="TodoCalendarViewController" id="Y6W-OH-hqX" customClass="TodoCalendarViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="calendar" catalog="system" id="YOJ-vp-XJR">
                         <imageReference key="selectedImage" image="calendar" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" id="Qcs-X7-ZpE">
+                    <navigationItem key="navigationItem" title="Todo" id="Qcs-X7-ZpE">
                         <barButtonItem key="leftBarButtonItem" title="로그아웃" id="hYm-EK-Y8X">
                             <color key="tintColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
@@ -136,6 +136,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fxo-su-zSn">
                                 <rect key="frame" x="20" y="380" width="374" height="382"/>
                                 <color key="backgroundColor" red="0.9529411793" green="0.96078431610000004" blue="0.99607843159999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -179,51 +180,65 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="투두 제목이 들어간당" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kTQ-nz-seY">
-                                <rect key="frame" x="20" y="59" width="374" height="22"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="30" y="74" width="364" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <color key="textColor" red="0.94211647727272729" green="0.81640562502486835" blue="0.780809056377743" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2000/01/01 00:11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJu-is-yYe">
-                                <rect key="frame" x="20" y="96" width="374" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="30" y="103" width="364" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="투두의 자세한 내용이 들거가게 되는 자리입니다 하하하하하하ㅏ하하하핳" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f3l-M8-u77">
-                                <rect key="frame" x="20" y="153" width="374" height="41"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="30" y="148" width="354" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1hp-6H-s0i">
-                                <rect key="frame" x="20" y="802" width="374" height="40"/>
+                                <rect key="frame" x="20" y="822" width="374" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="NYk-rD-lmf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="삭제하기"/>
+                                <connections>
+                                    <action selector="deleteButtonAction:" destination="RPV-pf-cDC" eventType="touchUpInside" id="ZkD-K2-KCk"/>
+                                </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fCL-Db-EOD">
+                                <rect key="frame" x="20" y="132" width="374" height="1"/>
+                                <color key="backgroundColor" red="1" green="0.95724998111300252" blue="0.98812280050341028" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="WaP-Vk-XIQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Deb-ze-zWJ"/>
                         <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="f3l-M8-u77" secondAttribute="trailing" constant="20" id="AK9-02-o23"/>
-                            <constraint firstItem="TJu-is-yYe" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="E5P-7M-BRh"/>
+                            <constraint firstItem="fCL-Db-EOD" firstAttribute="leading" secondItem="WIc-Af-oif" secondAttribute="leading" constant="20" id="5zW-yb-mHf"/>
+                            <constraint firstAttribute="trailing" secondItem="f3l-M8-u77" secondAttribute="trailing" constant="30" id="AK9-02-o23"/>
+                            <constraint firstItem="TJu-is-yYe" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="30" id="E5P-7M-BRh"/>
                             <constraint firstItem="Deb-ze-zWJ" firstAttribute="trailing" secondItem="TJu-is-yYe" secondAttribute="trailing" constant="20" id="F0t-xM-gsO"/>
-                            <constraint firstItem="TJu-is-yYe" firstAttribute="top" secondItem="kTQ-nz-seY" secondAttribute="bottom" constant="15" id="MMS-wj-CpE"/>
+                            <constraint firstItem="TJu-is-yYe" firstAttribute="top" secondItem="kTQ-nz-seY" secondAttribute="bottom" constant="5" id="MMS-wj-CpE"/>
                             <constraint firstItem="Deb-ze-zWJ" firstAttribute="trailing" secondItem="1hp-6H-s0i" secondAttribute="trailing" constant="20" id="MbD-fk-oVm"/>
-                            <constraint firstItem="f3l-M8-u77" firstAttribute="top" secondItem="TJu-is-yYe" secondAttribute="bottom" constant="40" id="PWO-i3-IxB"/>
-                            <constraint firstItem="f3l-M8-u77" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="Pu1-N5-kb3"/>
-                            <constraint firstItem="Deb-ze-zWJ" firstAttribute="bottom" secondItem="1hp-6H-s0i" secondAttribute="bottom" constant="20" id="aSG-ul-oGd"/>
+                            <constraint firstItem="f3l-M8-u77" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="30" id="Pu1-N5-kb3"/>
+                            <constraint firstItem="Deb-ze-zWJ" firstAttribute="bottom" secondItem="1hp-6H-s0i" secondAttribute="bottom" id="aSG-ul-oGd"/>
+                            <constraint firstAttribute="trailing" secondItem="fCL-Db-EOD" secondAttribute="trailing" constant="20" id="cUl-lK-QTL"/>
                             <constraint firstItem="Deb-ze-zWJ" firstAttribute="trailing" secondItem="kTQ-nz-seY" secondAttribute="trailing" constant="20" id="cvT-d0-ZXK"/>
-                            <constraint firstItem="kTQ-nz-seY" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="gZf-Xh-tJ0"/>
+                            <constraint firstItem="f3l-M8-u77" firstAttribute="top" secondItem="fCL-Db-EOD" secondAttribute="bottom" constant="15" id="fPg-R8-Q1W"/>
+                            <constraint firstItem="fCL-Db-EOD" firstAttribute="top" secondItem="TJu-is-yYe" secondAttribute="bottom" constant="13" id="gEn-zz-Blb"/>
+                            <constraint firstItem="kTQ-nz-seY" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="30" id="gZf-Xh-tJ0"/>
                             <constraint firstItem="1hp-6H-s0i" firstAttribute="leading" secondItem="Deb-ze-zWJ" secondAttribute="leading" constant="20" id="jME-ba-cd3"/>
-                            <constraint firstItem="kTQ-nz-seY" firstAttribute="top" secondItem="Deb-ze-zWJ" secondAttribute="top" constant="15" id="ra1-kl-sMu"/>
+                            <constraint firstItem="kTQ-nz-seY" firstAttribute="top" secondItem="Deb-ze-zWJ" secondAttribute="top" constant="30" id="ra1-kl-sMu"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteButton" destination="1hp-6H-s0i" id="lFV-6d-xZi"/>
                         <outlet property="detailContentLabel" destination="f3l-M8-u77" id="weC-cY-U7k"/>
                         <outlet property="detailDateLabel" destination="TJu-is-yYe" id="AGA-2s-yLu"/>
                         <outlet property="detailTitleLabel" destination="kTQ-nz-seY" id="SSI-wW-zhd"/>
@@ -236,7 +251,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="0i7-BX-OrS">
             <objects>
-                <tabBarController storyboardIdentifier="CalendarTabBar" id="sP3-TH-pCy" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="CalendarTabBar" hidesBottomBarWhenPushed="YES" id="sP3-TH-pCy" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oqX-LE-FQo">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
