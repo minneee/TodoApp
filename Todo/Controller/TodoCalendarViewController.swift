@@ -65,7 +65,7 @@ class TodoCalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 0)
+        //todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 0)
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let param = TodoListRequest(userid: userid)
         postTodoList(param)
@@ -256,7 +256,7 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
 
 extension TodoCalendarViewController: FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 1)
+        //todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 1)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"

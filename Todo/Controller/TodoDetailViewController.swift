@@ -14,7 +14,7 @@ class TodoDetailViewController: UIViewController {
     
     @IBOutlet weak var detailDateLabel: UILabel!
     
-    @IBOutlet weak var detailContentLabel: UILabel!
+    @IBOutlet weak var detailContentTextView: UITextView!
     
     @IBOutlet weak var deleteButton: UIButton!
     
@@ -28,7 +28,8 @@ class TodoDetailViewController: UIViewController {
 
         detailTitleLabel.text = receiveTitle
         detailDateLabel.text = receiveDate
-        detailContentLabel.text = receiveContent
+        //detailContentLabel.text = receiveContent
+        detailContentTextView.text = receiveContent
         
         self.navigationItem.title = "상세보기"
         self.tabBarController?.tabBar.isHidden = true
@@ -40,7 +41,6 @@ class TodoDetailViewController: UIViewController {
         
         let deleteAction = UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: {
             ACTION in
-            
             let userid = UserDefaults.standard.string(forKey: "id") ?? ""
             let param = DeleteTodoRequest(no: self.receiveNo, userid: userid)
             self.postDeleteTodo(param)
