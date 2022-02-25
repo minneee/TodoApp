@@ -16,6 +16,7 @@ struct selectedtodo {
     var userid: String
     var date: String
 }
+
 class TodoCalendarViewController: UIViewController {
 
     @IBOutlet weak var todoCalendar: FSCalendar!
@@ -27,7 +28,7 @@ class TodoCalendarViewController: UIViewController {
     @IBOutlet weak var logoutButton: UIBarButtonItem!
     
     
-    
+    //var eventDateList: [String] = []
     var todoList: [UserTodoList] = []
     var selectedList: [selectedtodo] = []
     
@@ -82,14 +83,28 @@ class TodoCalendarViewController: UIViewController {
         UserDefaults.standard.removeObject(forKey: "auto")
         UserDefaults.standard.removeObject(forKey: "id")
 
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let VC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        self.navigationController?.pushViewController(VC, animated: true)
+        let logoutAlert = UIAlertController(title: "알림", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         
-        //루트 컨트롤러 변경
-        let storyBD = UIStoryboard(name: "Main", bundle: nil)
-        let VC2 = storyBD.instantiateViewController(identifier: "NavController")
-        changeRootViewController(VC2)
+        let logoutFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+        let logoutTrueAction = UIAlertAction(title: "로그아웃", style: UIAlertAction.Style.destructive) { ACTION in
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let VC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            self.navigationController?.pushViewController(VC, animated: true)
+            
+            //루트 컨트롤러 변경
+            let storyBD = UIStoryboard(name: "Main", bundle: nil)
+            let VC2 = storyBD.instantiateViewController(identifier: "NavController")
+            self.changeRootViewController(VC2)
+        }
+        
+        logoutAlert.addAction(logoutFalseAction)
+        logoutAlert.addAction(logoutTrueAction)
+        self.present(logoutAlert, animated: true, completion: nil)
+        
+        
+        
+        
+        
     }
     
     func changeRootViewController(_ viewControllerToPresent: UIViewController) {
@@ -241,20 +256,29 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("투두 삭제 버튼 클릭")
-            //selectedList.remove(at: indexPath.row)
-            //tableView.deleteRows(at: [indexPath], with: .fade)
+            let deleteAlert = UIAlertController(title: "알림", message: "할 일을 삭제하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
             
-            let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-            let no = selectedList[indexPath.row].no
-            let param = DeleteTodoRequest(no: no, userid: userid)
-            postDeleteTodo(param)
+            let deleteFailAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+            let deleteTrueAction = UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { ACTION in
+                let userid = UserDefaults.standard.string(forKey: "id") ?? ""
+                let no = self.selectedList[indexPath.row].no
+                let param = DeleteTodoRequest(no: no, userid: userid)
+                self.postDeleteTodo(param)
+            })
+            deleteAlert.addAction(deleteFailAction)
+            deleteAlert.addAction(deleteTrueAction)
+            self.present(deleteAlert, animated: true, completion: nil)
+            
+            
+            
+            
             
             
         }
     }
 }
 
-extension TodoCalendarViewController: FSCalendarDelegate {
+extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         //todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 1)
         
@@ -269,6 +293,7 @@ extension TodoCalendarViewController: FSCalendarDelegate {
         //선택된 날짜의 투두를 배열에 저장
         for index in 0..<todoList.count {
             let arr = todoList[index].date.components(separatedBy: " ")
+            
             if arr[0] == selectedDate {
                 print("새 배열에 저장")
                 let data = todoList[index]
@@ -279,5 +304,28 @@ extension TodoCalendarViewController: FSCalendarDelegate {
         
         print(">>>>>>\(selectedList)")
         todoTableView.reloadData()
+    }
+    
+    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        var eventDateList: [String] = []
+        for index in 0..<todoList.count {
+            let arr = todoList[index].date.components(separatedBy: " ")
+            eventDateList.append(arr[0])
+            print("@@@!!\(eventDateList)")
+        }
+        
+        print("@@@@@@\(eventDateList)")
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let eDate = dateFormatter.string(from: date)
+        
+        if eventDateList.contains(eDate) {
+            return 1
+        }
+        else {
+            return 0
+        }
+            
     }
 }

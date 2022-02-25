@@ -28,7 +28,6 @@ class TodoDetailViewController: UIViewController {
 
         detailTitleLabel.text = receiveTitle
         detailDateLabel.text = receiveDate
-        //detailContentLabel.text = receiveContent
         detailContentTextView.text = receiveContent
         
         self.navigationItem.title = "상세보기"
