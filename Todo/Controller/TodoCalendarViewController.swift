@@ -49,13 +49,10 @@ class TodoCalendarViewController: UIViewController {
         todoTableView.rowHeight = UITableView.automaticDimension //50 이상일 때 동적 높이
         
         self.todoCalendar.delegate = self
+        self.todoCalendar.dataSource = self
         self.todoTableView.delegate = self
         self.todoTableView.dataSource = self
         self.todoTableView.register(UINib(nibName: "TodoTableViewCell", bundle: nil),  forCellReuseIdentifier: "TodoTableViewCell")
-        
-        let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = TodoListRequest(userid: userid)
-        postTodoList(param)
         
         //탭바 설정
         self.tabBarController?.tabBar.layer.borderWidth = 0.5
@@ -66,7 +63,6 @@ class TodoCalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        //todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 0)
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let param = TodoListRequest(userid: userid)
         postTodoList(param)
@@ -144,7 +140,7 @@ class TodoCalendarViewController: UIViewController {
                         print("!!!!!!!\(selectedList)")
                         
                         self.todoTableView.reloadData()
-                        
+                        self.todoCalendar.reloadData()
                     }
                     else{
                         print("투두 조회 실패")
@@ -280,8 +276,6 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
 
 extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        //todoCalendar.appearance.selectionColor = UIColor(white: 1, alpha: 1)
-        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         selectedDate = dateFormatter.string(from: date)
@@ -306,16 +300,17 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         todoTableView.reloadData()
     }
     
-    
+
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         var eventDateList: [String] = []
+        print(todoList.count)
         for index in 0..<todoList.count {
             let arr = todoList[index].date.components(separatedBy: " ")
             eventDateList.append(arr[0])
             print("@@@!!\(eventDateList)")
         }
         
-        print("@@@@@@\(eventDateList)")
+        print("+++\(eventDateList)")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         let eDate = dateFormatter.string(from: date)
@@ -326,6 +321,7 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         else {
             return 0
         }
-            
     }
+    
+    
 }
