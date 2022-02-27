@@ -75,7 +75,7 @@
                                 </state>
                                 <state key="selected" image="checkmark.square" catalog="system"/>
                                 <connections>
-                                    <action selector="autoLoginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QTr-3c-rTT"/>
+                                    <action selector="autoLoginButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dRU-Nb-O8b"/>
                                 </connections>
                             </button>
                         </subviews>

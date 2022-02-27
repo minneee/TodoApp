@@ -31,6 +31,10 @@ class TodoDetailViewController: UIViewController {
         detailContentTextView.text = receiveContent
         
         self.navigationItem.title = "상세보기"
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
     

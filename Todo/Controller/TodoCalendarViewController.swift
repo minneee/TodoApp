@@ -67,6 +67,7 @@ class TodoCalendarViewController: UIViewController {
         let param = TodoListRequest(userid: userid)
         postTodoList(param)
         
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     @IBAction func plusButtonAction(_ sender: Any) {
@@ -82,11 +83,7 @@ class TodoCalendarViewController: UIViewController {
         let logoutAlert = UIAlertController(title: "알림", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
         
         let logoutFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
-        let logoutTrueAction = UIAlertAction(title: "로그아웃", style: UIAlertAction.Style.destructive) { ACTION in
-            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let VC = storyBoard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.navigationController?.pushViewController(VC, animated: true)
-            
+        let logoutTrueAction = UIAlertAction(title: "로그아웃", style: UIAlertAction.Style.destructive) { ACTION in 
             //루트 컨트롤러 변경
             let storyBD = UIStoryboard(name: "Main", bundle: nil)
             let VC2 = storyBD.instantiateViewController(identifier: "NavController")

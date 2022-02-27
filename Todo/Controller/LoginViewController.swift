@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var autoLoginButton: UIButton!
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -42,10 +44,13 @@ class LoginViewController: UIViewController {
 
     @IBAction func autoLoginButtonAction(_ sender: UIButton) {
         sender.isSelected.toggle()
-        
+  
         if sender.isSelected == true {
             //자동로그인 선택
             UserDefaults.standard.set("auto", forKey: "auto")
+        }
+        else {
+            UserDefaults.standard.removeObject(forKey: "auto")
         }
     }
     
@@ -72,10 +77,7 @@ class LoginViewController: UIViewController {
                         //성공 로직
                         UserDefaults.standard.set(self.idTextField.text, forKey: "id")
                         print(UserDefaults.standard.string(forKey: "id"))
-                        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
-                        let VC = storyBoard.instantiateViewController(identifier: "CalendarTabBar")
-                        self.navigationController?.pushViewController(VC, animated: true)
-                        
+
                         //루트 컨트롤러 변경
                         let storyBD = UIStoryboard(name: "todo", bundle: nil)
                         let VC2 = storyBD.instantiateViewController(identifier: "CalendarTabBar")
@@ -90,6 +92,8 @@ class LoginViewController: UIViewController {
                         let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                         loginFailAlert.addAction(loginFailAction)
                         self.present(loginFailAlert, animated: true, completion: nil)
+                        
+                        UserDefaults.standard.removeObject(forKey: "auto")
                     }
                     
                     
@@ -100,6 +104,8 @@ class LoginViewController: UIViewController {
                     let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                     loginFailAlert.addAction(loginFailAction)
                     self.present(loginFailAlert, animated: true, completion: nil)
+                    
+                    UserDefaults.standard.removeObject(forKey: "auto")
                 }
                 
             }

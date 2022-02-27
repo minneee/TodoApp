@@ -22,8 +22,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.navigationItem.title = "회원가입"
     }
     
     @IBAction func signUpButtonAction(_ sender: Any) {
