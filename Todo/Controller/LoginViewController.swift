@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var autoLoginButton: UIButton!
     
-    
+    var autoLogin = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if(UserDefaults.standard.string(forKey: "auto") == "auto"){
+        if(UserDefaults.standard.bool(forKey: "auto") == true){
             let storyBoard = UIStoryboard(name: "todo", bundle: nil)
             let VC = storyBoard.instantiateViewController(withIdentifier: "TodoCalendarViewController") as! TodoCalendarViewController
             self.navigationController?.pushViewController(VC, animated: true)
@@ -45,12 +45,15 @@ class LoginViewController: UIViewController {
     @IBAction func autoLoginButtonAction(_ sender: UIButton) {
         sender.isSelected.toggle()
   
+        
         if sender.isSelected == true {
             //자동로그인 선택
-            UserDefaults.standard.set("auto", forKey: "auto")
+            //UserDefaults.standard.set("auto", forKey: "auto")
+            autoLogin = true
         }
         else {
-            UserDefaults.standard.removeObject(forKey: "auto")
+            //UserDefaults.standard.removeObject(forKey: "auto")
+            autoLogin = false
         }
     }
     
@@ -77,7 +80,11 @@ class LoginViewController: UIViewController {
                         //성공 로직
                         UserDefaults.standard.set(self.idTextField.text, forKey: "id")
                         print(UserDefaults.standard.string(forKey: "id"))
-
+                        
+                        if autoLogin == true {
+                            UserDefaults.standard.set(true, forKey: "auto")
+                        }
+                        
                         //루트 컨트롤러 변경
                         let storyBD = UIStoryboard(name: "todo", bundle: nil)
                         let VC2 = storyBD.instantiateViewController(identifier: "CalendarTabBar")
@@ -92,8 +99,6 @@ class LoginViewController: UIViewController {
                         let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                         loginFailAlert.addAction(loginFailAction)
                         self.present(loginFailAlert, animated: true, completion: nil)
-                        
-                        UserDefaults.standard.removeObject(forKey: "auto")
                     }
                     
                     
@@ -104,8 +109,6 @@ class LoginViewController: UIViewController {
                     let loginFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                     loginFailAlert.addAction(loginFailAction)
                     self.present(loginFailAlert, animated: true, completion: nil)
-                    
-                    UserDefaults.standard.removeObject(forKey: "auto")
                 }
                 
             }

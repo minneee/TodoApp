@@ -77,7 +77,8 @@ class TodoCalendarViewController: UIViewController {
     }
     
     @IBAction func logoutButtonAction(_ sender: Any) {
-        UserDefaults.standard.removeObject(forKey: "auto")
+        //UserDefaults.standard.removeObject(forKey: "auto")
+        UserDefaults.standard.set(false, forKey: "auto")
         UserDefaults.standard.removeObject(forKey: "id")
 
         let logoutAlert = UIAlertController(title: "알림", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
