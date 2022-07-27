@@ -9,8 +9,8 @@ import Foundation
 import UIKit
 
 struct SignUpRequest: Encodable {
-    var username: String
-    var userid: String
-    var userpw: String
-    var userpw_check: String
+    var userNM: String
+    var userID: String
+    var userPW: String
+    var userPWCHK: String
 }

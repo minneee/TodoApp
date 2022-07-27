@@ -9,6 +9,6 @@ import Foundation
 import UIKit
 
 struct LoginRequest: Encodable {
-    var userid: String
-    var userpw: String
+    var userID: String
+    var userPW: String
 }

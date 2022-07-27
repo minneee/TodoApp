@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import FSCalendar
 
+
 struct selectedtodo {
     var no: Int
     var title: String
@@ -16,6 +17,7 @@ struct selectedtodo {
     var userid: String
     var date: String
 }
+
 
 class TodoCalendarViewController: UIViewController {
 
@@ -64,7 +66,8 @@ class TodoCalendarViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-        let param = TodoListRequest(userid: userid)
+        let deadline = TodoDeadlineDateRequset(date: selectedDate)
+        let param = TodoListRequest(uuid: userid, deadline: deadline)
         postTodoList(param)
         
         self.tabBarController?.tabBar.isHidden = false
@@ -117,20 +120,20 @@ class TodoCalendarViewController: UIViewController {
             .responseDecodable(of: TodoListResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
-                    if response.isSuccess == true {
+                    if response.success == true {
                         print("투두 조회 성공")
                         //성공 로직
-                        self.todoList = response.todo
+                        self.todoList = response.data
                         
-                        //선택 된 날짜 투두를 새 배열에 저장
+                        //선택 된 날짜 투두를 새 배열에 저장 --> API 수정으로 이부분도 다시 수정 해야함
                         self.selectedList.removeAll()
                         
                         for index in 0..<todoList.count {
-                            let arr = todoList[index].date.components(separatedBy: " ")
+                            let arr = todoList[index].deadline.date.components(separatedBy: " ")
                             if arr[0] == selectedDate {
                                 print("새 배열에 저장")
                                 let data = todoList[index]
-                                let todoData: selectedtodo = selectedtodo(no: data.no, title: data.title, content: data.content, userid: data.userid, date: data.date)
+                                let todoData: selectedtodo = selectedtodo(r, title: data.title, content: data.content, userid: data.userid, date: data.date)
                                 self.selectedList.append(todoData)
                             }
                         }

@@ -64,7 +64,7 @@ class LoginViewController: UIViewController {
         let id = idTextField.text ?? ""
         let pw = pwTextField.text ?? ""
         
-        let param = LoginRequest(userid: id, userpw: pw)
+        let param = LoginRequest(userID: id, userPW: pw)
         postLogin(param)
     }
     
@@ -75,7 +75,7 @@ class LoginViewController: UIViewController {
             .responseDecodable(of: LoginResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
-                    if(response.isSuccess == true){
+                    if(response.success == true){
                         print("로그인 성공")
                         //성공 로직
                         UserDefaults.standard.set(self.idTextField.text, forKey: "id")

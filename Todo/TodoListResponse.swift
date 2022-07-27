@@ -9,16 +9,23 @@ import Foundation
 import UIKit
 
 struct TodoListResponse: Decodable {
-    var isSuccess: Bool
-    var code: Int
+    var statusCode: Int
+    var data: [UserTodoList]
     var message: String
-    var todo: [UserTodoList]
+    var success: Bool
 }
 
 struct UserTodoList: Decodable {
-    var no: Int
+    var id: Int
     var title: String
-    var content: String
-    var userid: String
+    var content: String?
+    var deadline: TodoDeadlineResponse
+    var create_time: String
+    var status: String
+    
+}
+
+struct TodoDeadlineResponse: Decodable {
     var date: String
+    var time: String?
 }

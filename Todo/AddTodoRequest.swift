@@ -9,8 +9,13 @@ import Foundation
 import UIKit
 
 struct AddTodoRequest: Encodable {
+    var uuid: String
     var title: String
-    var content: String
-    var userid: String
+    var content: String?
+    var deadline: TodoDeadlineRequset
+}
+
+struct TodoDeadlineRequset: Encodable {
     var date: String
+    var time: String?
 }

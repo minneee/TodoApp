@@ -9,9 +9,8 @@ import Foundation
 import UIKit
 
 struct SignUpResponse: Decodable {
-    var isSuccess: Bool
-    var code: Int
-    var message: String?
-    var username:String?
-    var userid: String?
+    var statusCode: Int
+    var data: String?
+    var message: String
+    var success: Bool
 }

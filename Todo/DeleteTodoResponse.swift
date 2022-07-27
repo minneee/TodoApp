@@ -9,7 +9,8 @@ import Foundation
 import UIKit
 
 struct DeleteTodoResponse: Decodable {
-    var isSuccess: Bool
-    var code: Int
+    var statusCode: Int
+    var data: String?
     var message: String
+    var success: Bool
 }

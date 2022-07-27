@@ -33,7 +33,7 @@ class SignUpViewController: UIViewController {
         let pw = pwTextField.text ?? ""
         let pwCheck = pwCheckTextField.text ?? ""
         
-        let param = SignUpRequest(username: name, userid: id, userpw: pw, userpw_check: pwCheck)
+        let param = SignUpRequest(userNM: name, userID: id, userPW: pw, userPWCHK: pwCheck)
         postSignUp(param)
     }
 
@@ -44,7 +44,7 @@ class SignUpViewController: UIViewController {
             .responseDecodable(of: SignUpResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
-                    if(response.isSuccess == true){
+                    if(response.success == true){
                         print(response.message)
                         //성공 로직
                         self.navigationController?.popViewController(animated: true)

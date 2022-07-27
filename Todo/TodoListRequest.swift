@@ -9,5 +9,10 @@ import Foundation
 import UIKit
 
 struct TodoListRequest: Encodable {
-    var userid: String
+    var uuid: String
+    var deadline: TodoDeadlineDateRequset
+}
+
+struct TodoDeadlineDateRequset: Encodable {
+    var date: String
 }
