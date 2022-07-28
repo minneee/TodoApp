@@ -16,7 +16,7 @@ struct TodoListResponse: Decodable {
 }
 
 struct UserTodoList: Decodable {
-    var id: Int
+    var todo_id: Int
     var title: String
     var content: String?
     var deadline: TodoDeadlineResponse

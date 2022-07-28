@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController {
 
     
     func postSignUp(_ parameters:SignUpRequest) {
-        AF.request("http://13.209.10.30:4004/user", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://54.180.25.129:8080/join", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: SignUpResponse.self) { [self] response in
                 switch response.result {

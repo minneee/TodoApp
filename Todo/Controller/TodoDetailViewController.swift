@@ -45,7 +45,7 @@ class TodoDetailViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: {
             ACTION in
             let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-            let param = DeleteTodoRequest(no: self.receiveNo, userid: userid)
+            let param = DeleteTodoRequest(uuid: userid, todo_id: self.receiveNo)//(no: self.receiveNo, userid: userid)
             self.postDeleteTodo(param)
             
         })
@@ -62,12 +62,12 @@ class TodoDetailViewController: UIViewController {
     
     
     func postDeleteTodo(_ parameters: DeleteTodoRequest) {
-        AF.request("http://13.209.10.30:4004/todo/delete", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://54.180.25.129:8080/todo", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: DeleteTodoResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
-                    if response.isSuccess == true {
+                    if response.success == true {
                         print(response.message)
                         //성공 로직
                         self.navigationController?.popViewController(animated: true)

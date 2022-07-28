@@ -48,7 +48,7 @@ class AddTodoViewController: UIViewController {
     }
 
     func postAddTodo(_ parameters: AddTodoRequest) {
-        AF.request("http://13.209.10.30:4004/todo", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://54.180.25.129:8080/todo", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: AddTodoResponse.self) { [self] response in
                 switch response.result {

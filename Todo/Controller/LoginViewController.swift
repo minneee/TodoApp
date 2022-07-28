@@ -70,7 +70,7 @@ class LoginViewController: UIViewController {
     
     
     func postLogin(_ parameters: LoginRequest) {
-        AF.request("http://13.209.10.30:4004/user/login", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://54.180.25.129:8080/login", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: LoginResponse.self) { [self] response in
                 switch response.result {

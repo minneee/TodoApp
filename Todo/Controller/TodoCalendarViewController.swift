@@ -11,12 +11,13 @@ import FSCalendar
 
 
 struct selectedtodo {
-    var no: Int
+    var todo_id: Int
     var title: String
-    var content: String
-    var userid: String
+    var content: String?
     var date: String
+    
 }
+
 
 
 class TodoCalendarViewController: UIViewController {
@@ -115,7 +116,7 @@ class TodoCalendarViewController: UIViewController {
     }
     
     func postTodoList(_ parameters: TodoListRequest) {
-        AF.request("http://13.209.10.30:4004/todo/list", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://54.180.25.129:8080/todo/deadline?page=?", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: TodoListResponse.self) { [self] response in
                 switch response.result {
@@ -133,7 +134,7 @@ class TodoCalendarViewController: UIViewController {
                             if arr[0] == selectedDate {
                                 print("새 배열에 저장")
                                 let data = todoList[index]
-                                let todoData: selectedtodo = selectedtodo(r, title: data.title, content: data.content, userid: data.userid, date: data.date)
+                                let todoData: selectedtodo = selectedtodo(todo_id: data.todo_id, title: data.title, content: data.content, date: data.deadline.date)
                                 self.selectedList.append(todoData)
                             }
                         }
@@ -166,12 +167,12 @@ class TodoCalendarViewController: UIViewController {
     }
     
     func postDeleteTodo(_ parameters: DeleteTodoRequest) {
-        AF.request("http://13.209.10.30:4004/todo/delete", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://54.180.25.129:8080/todo", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: DeleteTodoResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
-                    if response.isSuccess == true {
+                    if response.success == true {
                         print(response.message)
                         //성공 로직
                         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
