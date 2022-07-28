@@ -103,6 +103,7 @@ class LoginViewController: UIViewController {
                     
                     
                 case .failure(let error):
+                    print(error)
                     print("서버 통신 실패")
                     let loginFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
                     
