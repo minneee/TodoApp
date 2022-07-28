@@ -130,8 +130,8 @@ class TodoCalendarViewController: UIViewController {
                         self.selectedList.removeAll()
                         
                         for index in 0..<todoList.count {
-                            let arr = todoList[index].deadline.date.components(separatedBy: " ")
-                            if arr[0] == selectedDate {
+                            //let arr = todoList[index].deadline.date.components(separatedBy: " ")
+                            if todoList[index].deadline.date == selectedDate {
                                 print("새 배열에 저장")
                                 let data = todoList[index]
                                 let todoData: selectedtodo = selectedtodo(todo_id: data.todo_id, title: data.title, content: data.content, date: data.deadline.date)
@@ -176,7 +176,8 @@ class TodoCalendarViewController: UIViewController {
                         print(response.message)
                         //성공 로직
                         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-                        let param = TodoListRequest(userid: userid)
+                        let deadline = TodoDeadlineDateRequset(date: selectedDate)
+                        let param = TodoListRequest(uuid: userid, deadline: deadline)
                         postTodoList(param)
                     }
                     else{
@@ -237,11 +238,11 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
         let detailTitle = self.selectedList[indexPath.row].title
         let detailDate = self.selectedList[indexPath.row].date
         let detailContent = self.selectedList[indexPath.row].content
-        let detailNo = self.selectedList[indexPath.row].no
+        let detailNo = self.selectedList[indexPath.row].todo_id
         
         VC.receiveTitle = detailTitle
         VC.receiveDate = detailDate
-        VC.receiveContent = detailContent
+        VC.receiveContent = detailContent ?? " "
         VC.receiveNo = detailNo
         
         
@@ -259,8 +260,8 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
             let deleteFailAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
             let deleteTrueAction = UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { ACTION in
                 let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-                let no = self.selectedList[indexPath.row].no
-                let param = DeleteTodoRequest(no: no, userid: userid)
+                let no = self.selectedList[indexPath.row].todo_id
+                let param = DeleteTodoRequest(uuid: userid, todo_id: no)
                 self.postDeleteTodo(param)
             })
             deleteAlert.addAction(deleteFailAction)
@@ -288,12 +289,12 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         
         //선택된 날짜의 투두를 배열에 저장
         for index in 0..<todoList.count {
-            let arr = todoList[index].date.components(separatedBy: " ")
+            //let arr = todoList[index].deadline.date
             
-            if arr[0] == selectedDate {
+            if todoList[index].deadline.date == selectedDate {
                 print("새 배열에 저장")
                 let data = todoList[index]
-                let todoData: selectedtodo = selectedtodo(no: data.no, title: data.title, content: data.content, userid: data.userid, date: data.date)
+                let todoData: selectedtodo = selectedtodo(todo_id: data.todo_id, title: data.title, content: data.content, date: data.deadline.date)
                 self.selectedList.append(todoData)
             }
         }
@@ -307,8 +308,8 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         var eventDateList: [String] = []
         print(todoList.count)
         for index in 0..<todoList.count {
-            let arr = todoList[index].date.components(separatedBy: " ")
-            eventDateList.append(arr[0])
+            //let arr = todoList[index].date.components(separatedBy: " ")
+            eventDateList.append(todoList[index].deadline.date)
             print("@@@!!\(eventDateList)")
         }
         
