@@ -19,6 +19,7 @@ class AddTodoViewController: UIViewController {
     @IBOutlet weak var addButton: UIButton!
     
     var todoDate: String?
+    var deadlineArr: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,14 +35,16 @@ class AddTodoViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         todoDate = formatter.string(from: sender.date)
+        //let arr = todoList[index].deadline.date.components(separatedBy: " ")
+        deadlineArr = todoDate!.components(separatedBy: " ")
     }
     
     @IBAction func addButtonAction(_ sender: Any) {
         let title = titleTextField.text ?? ""
         let content = contentTextField.text ?? ""
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-        
-        let param = AddTodoRequest(title: title, content: content, userid: userid, date: todoDate ?? "")
+        let deadline = TodoDeadlineRequset(date: deadlineArr[0], time: deadlineArr[1])
+        let param = AddTodoRequest(uuid: userid, title: title, content: content, deadline: deadline)//(title: title, content: content, userid: userid, date: todoDate ?? "")
         print(todoDate)
         print(userid)
         postAddTodo(param)
@@ -53,7 +56,7 @@ class AddTodoViewController: UIViewController {
             .responseDecodable(of: AddTodoResponse.self) { [self] response in
                 switch response.result {
                 case .success(let response):
-                    if(response.isSuccess == true){
+                    if(response.success == true){
                         print("투두 추가 성공")
                         print(response.message)
                         self.navigationController?.popViewController(animated: true)
