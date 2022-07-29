@@ -78,8 +78,10 @@ class LoginViewController: UIViewController {
                     if(response.success == true){
                         print("로그인 성공")
                         //성공 로직
-                        UserDefaults.standard.set(self.idTextField.text, forKey: "id")
-                        print(UserDefaults.standard.string(forKey: "id"))
+                        //UserDefaults.standard.set(self.idTextField.text, forKey: "id")
+                        //print(UserDefaults.standard.string(forKey: "id"))
+                        
+                        UserDefaults.standard.set(response.data, forKey: "id")
                         
                         if autoLogin == true {
                             UserDefaults.standard.set(true, forKey: "auto")

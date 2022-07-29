@@ -69,6 +69,8 @@ class TodoCalendarViewController: UIViewController {
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let deadline = TodoDeadlineDateRequset(date: selectedDate)
         let param = TodoListRequest(uuid: userid, deadline: deadline)
+        print("111111\(deadline) \(userid)")
+        print(param)
         postTodoList(param)
         
         self.tabBarController?.tabBar.isHidden = false
@@ -155,7 +157,7 @@ class TodoCalendarViewController: UIViewController {
                     }
                     
                 case .failure(let error):
-                    print("서버 통신 실패\(error.localizedDescription)")
+                    print("서버 통신 실패 postTodoList \(error.localizedDescription) --- \(error)")
                     
                     let FailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
                     

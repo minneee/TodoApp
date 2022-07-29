@@ -10,7 +10,7 @@ import UIKit
 
 struct LoginResponse: Decodable {
     var statusCode: Int
-    var data: Bool
+    var data: String?
     var message: String
     var success: Bool
 }
