@@ -9,15 +9,14 @@ import UIKit
 import Alamofire
 import FSCalendar
 
-
+/*
 struct selectedtodo {
     var todo_id: Int
     var title: String
     var content: String?
     var date: String
-    
 }
-
+*/
 
 
 class TodoCalendarViewController: UIViewController {
@@ -33,7 +32,7 @@ class TodoCalendarViewController: UIViewController {
     
     //var eventDateList: [String] = []
     var todoList: [UserTodoList] = []
-    var selectedList: [selectedtodo] = []
+    //var selectedList: [selectedtodo] = []
     
     var selectedDate = ""
     var nowDate = ""
@@ -66,11 +65,11 @@ class TodoCalendarViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let deadline = TodoDeadlineDateRequset(date: selectedDate)
         let param = TodoListRequest(uuid: userid, deadline: deadline)
-        print("111111\(deadline) \(userid)")
-        print(param)
+        
         postTodoList(param)
         
         self.tabBarController?.tabBar.isHidden = false
@@ -129,6 +128,8 @@ class TodoCalendarViewController: UIViewController {
                         //성공 로직
                         self.todoList = response.data
                         
+                        
+                        /*
                         //선택 된 날짜 투두를 새 배열에 저장 --> API 수정으로 이부분도 다시 수정 해야함
                         self.selectedList.removeAll()
                         
@@ -141,11 +142,12 @@ class TodoCalendarViewController: UIViewController {
                                 self.selectedList.append(todoData)
                             }
                         }
+                        */
                         
-                        print("!!!!!!!\(selectedList)")
                         
                         self.todoTableView.reloadData()
                         self.todoCalendar.reloadData()
+                        
                     }
                     else{
                         print("투두 조회 실패")
@@ -209,16 +211,36 @@ class TodoCalendarViewController: UIViewController {
 
 }
 
+extension TodoCalendarViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffsetY = scrollView.contentOffset.y
+        let tableViewContentSize = todoTableView.contentSize.height
+        let paginationY = tableViewContentSize * 0.2
+        
+        if contentOffsetY > tableViewContentSize - paginationY {
+            let userid = UserDefaults.standard.string(forKey: "id") ?? ""
+            let deadline = TodoDeadlineDateRequset(date: selectedDate)
+            let param = TodoListRequest(uuid: userid, deadline: deadline)
+            
+            postTodoList(param)
+        }
+    }
+}
+
 extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return selectedList.count
+        return todoList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "TodoTableViewCell", for: indexPath) as! TodoTableViewCell
         
-        let todoData = self.selectedList[indexPath.row]
+        let todoData = self.todoList[indexPath.row]
+        userCell.cellTitleLabel.text = todoData.title
+        userCell.cellTimeLabel.text = todoData.deadline.date
+        userCell.cellContentLabel.text = todoData.content
+        /*
         print(todoData.date)
         let arr =  todoData.date.components(separatedBy: " ")
         print("\(arr), \(arr[0])")
@@ -228,7 +250,7 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
             userCell.cellContentLabel.text = todoData.content
            
         } 
-        
+        */
 
         return userCell
     }
@@ -238,10 +260,10 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
         let VC = storyBoard.instantiateViewController(withIdentifier: "TodoDetailViewController") as! TodoDetailViewController
         self.navigationController?.pushViewController(VC, animated: true)
         
-        let detailTitle = self.selectedList[indexPath.row].title
-        let detailDate = self.selectedList[indexPath.row].date
-        let detailContent = self.selectedList[indexPath.row].content
-        let detailNo = self.selectedList[indexPath.row].todo_id
+        let detailTitle = self.todoList[indexPath.row].title
+        let detailDate = self.todoList[indexPath.row].deadline.date
+        let detailContent = self.todoList[indexPath.row].content
+        let detailNo = self.todoList[indexPath.row].todo_id
         
         VC.receiveTitle = detailTitle
         VC.receiveDate = detailDate
@@ -263,7 +285,7 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
             let deleteFailAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
             let deleteTrueAction = UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: { ACTION in
                 let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-                let no = self.selectedList[indexPath.row].todo_id
+                let no = self.todoList[indexPath.row].todo_id
                 let param = DeleteTodoRequest(uuid: userid, todo_id: no)
                 self.postDeleteTodo(param)
             })
@@ -287,6 +309,13 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         selectedDate = dateFormatter.string(from: date)
         print(selectedDate)
         
+        let userid = UserDefaults.standard.string(forKey: "id") ?? ""
+        let deadline = TodoDeadlineDateRequset(date: selectedDate)
+        let param = TodoListRequest(uuid: userid, deadline: deadline)
+        
+        postTodoList(param)
+        
+        /*
         //이전 데이터 누적을 피하기 위해 배열 초기화
         self.selectedList.removeAll()
         
@@ -301,8 +330,8 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
                 self.selectedList.append(todoData)
             }
         }
-        
         print(">>>>>>\(selectedList)")
+         */
         todoTableView.reloadData()
     }
     
