@@ -17,7 +17,8 @@ struct selectedtodo {
     var date: String
 }
 */
-
+var pageNum = 1
+var paging = true
 
 class TodoCalendarViewController: UIViewController {
 
@@ -69,8 +70,9 @@ class TodoCalendarViewController: UIViewController {
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let deadline = TodoDeadlineDateRequset(date: selectedDate)
         let param = TodoListRequest(uuid: userid, deadline: deadline)
-        
-        postTodoList(param)
+        pageNum = 1
+        print("🐽\(pageNum)")
+        postTodoList(param, pageNum: pageNum)
         
         self.tabBarController?.tabBar.isHidden = false
     }
@@ -116,9 +118,9 @@ class TodoCalendarViewController: UIViewController {
             }
     }
     
-    func postTodoList(_ parameters: TodoListRequest) {
+    func postTodoList(_ parameters: TodoListRequest, pageNum: Int) {
         //페이징 처리 필요
-        AF.request("http://54.180.25.129:8080/todo/deadline?page=?", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+        AF.request("http://54.180.25.129:8080/todo/deadline?page=\(pageNum)", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: TodoListResponse.self) { [self] response in
                 switch response.result {
@@ -126,10 +128,22 @@ class TodoCalendarViewController: UIViewController {
                     if response.success == true {
                         print("투두 조회 성공")
                         //성공 로직
-                        self.todoList = response.data
+                        if pageNum == 1 {
+                            todoList.removeAll()
+                            paging = true
+                        }
+                        let listChek = todoList
                         
+                        for index in response.data {
+                            todoList.append(index)
+                        }
+                        
+                        if listChek.count == todoList.count{
+                            paging = false
+                        }
                         
                         /*
+                        self.todoList = response.data
                         //선택 된 날짜 투두를 새 배열에 저장 --> API 수정으로 이부분도 다시 수정 해야함
                         self.selectedList.removeAll()
                         
@@ -183,7 +197,8 @@ class TodoCalendarViewController: UIViewController {
                         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
                         let deadline = TodoDeadlineDateRequset(date: selectedDate)
                         let param = TodoListRequest(uuid: userid, deadline: deadline)
-                        postTodoList(param)
+                        pageNum = 1
+                        postTodoList(param, pageNum: pageNum)
                     }
                     else{
                         print(response.message)
@@ -196,7 +211,7 @@ class TodoCalendarViewController: UIViewController {
                     }
                 
                 case .failure(let error):
-                    print("서버 통신 실패\(error.localizedDescription)")
+                    print("서버 통신 실패\(error.localizedDescription) --- \(error)")
                     let signUpFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
                     
                     let signUpFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
@@ -217,12 +232,15 @@ extension TodoCalendarViewController: UIScrollViewDelegate {
         let tableViewContentSize = todoTableView.contentSize.height
         let paginationY = tableViewContentSize * 0.2
         
-        if contentOffsetY > tableViewContentSize - paginationY {
-            let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-            let deadline = TodoDeadlineDateRequset(date: selectedDate)
-            let param = TodoListRequest(uuid: userid, deadline: deadline)
-            
-            postTodoList(param)
+        if contentOffsetY > tableViewContentSize - paginationY - 180{
+            if paging == true{
+                let userid = UserDefaults.standard.string(forKey: "id") ?? ""
+                let deadline = TodoDeadlineDateRequset(date: selectedDate)
+                let param = TodoListRequest(uuid: userid, deadline: deadline)
+                pageNum = pageNum + 1
+                postTodoList(param, pageNum: pageNum)
+                print("🐶\(pageNum)")
+            }
         }
     }
 }
@@ -238,7 +256,7 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
         
         let todoData = self.todoList[indexPath.row]
         userCell.cellTitleLabel.text = todoData.title
-        userCell.cellTimeLabel.text = todoData.deadline.date
+        userCell.cellTimeLabel.text = todoData.deadline.date + " " + (todoData.deadline.time ?? "")
         userCell.cellContentLabel.text = todoData.content
         /*
         print(todoData.date)
@@ -261,7 +279,7 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
         self.navigationController?.pushViewController(VC, animated: true)
         
         let detailTitle = self.todoList[indexPath.row].title
-        let detailDate = self.todoList[indexPath.row].deadline.date
+        let detailDate = self.todoList[indexPath.row].deadline.date + " " + (self.todoList[indexPath.row].deadline.time ?? "")
         let detailContent = self.todoList[indexPath.row].content
         let detailNo = self.todoList[indexPath.row].todo_id
         
@@ -307,13 +325,13 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         selectedDate = dateFormatter.string(from: date)
-        print(selectedDate)
+        //print(selectedDate)
         
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let deadline = TodoDeadlineDateRequset(date: selectedDate)
         let param = TodoListRequest(uuid: userid, deadline: deadline)
-        
-        postTodoList(param)
+        pageNum = 1
+        postTodoList(param, pageNum: pageNum)
         
         /*
         //이전 데이터 누적을 피하기 위해 배열 초기화
@@ -338,14 +356,14 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
         var eventDateList: [String] = []
-        print(todoList.count)
+        //print(todoList.count)
         for index in 0..<todoList.count {
             //let arr = todoList[index].date.components(separatedBy: " ")
             eventDateList.append(todoList[index].deadline.date)
-            print("@@@!!\(eventDateList)")
+            //print("@@@!!\(eventDateList)")
         }
         
-        print("+++\(eventDateList)")
+        //print("+++\(eventDateList)")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
         let eDate = dateFormatter.string(from: date)

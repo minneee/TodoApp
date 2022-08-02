@@ -27,7 +27,8 @@ class AddTodoViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         todoDate = formatter.string(from: date as Date)
-
+        deadlineArr = todoDate!.components(separatedBy: " ")
+        print("zzz\(todoDate)")
         self.navigationItem.title = "할일 추가"
     }
     
@@ -37,6 +38,7 @@ class AddTodoViewController: UIViewController {
         todoDate = formatter.string(from: sender.date)
         //let arr = todoList[index].deadline.date.components(separatedBy: " ")
         deadlineArr = todoDate!.components(separatedBy: " ")
+        print("ggg\(deadlineArr)")
     }
     
     @IBAction func addButtonAction(_ sender: Any) {

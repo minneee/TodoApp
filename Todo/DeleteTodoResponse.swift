@@ -10,7 +10,7 @@ import UIKit
 
 struct DeleteTodoResponse: Decodable {
     var statusCode: Int
-    var data: String?
+    var data: Int?
     var message: String
     var success: Bool
 }
