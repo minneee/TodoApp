@@ -176,6 +176,13 @@
                                     <action selector="signUpButtonAction:" destination="Xsr-4v-qRu" eventType="touchUpInside" id="5SJ-0m-koP"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="회원가입" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eWC-Jf-GDK">
+                                <rect key="frame" x="178" y="237" width="59" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="LfE-hz-XAn"/>
                         <color key="backgroundColor" red="0.90528628511772324" green="0.9244645644970767" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
