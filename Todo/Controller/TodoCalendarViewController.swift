@@ -28,7 +28,7 @@ class TodoCalendarViewController: UIViewController {
     
     @IBOutlet weak var plusButton: UIBarButtonItem!
     
-    @IBOutlet weak var logoutButton: UIBarButtonItem!
+    @IBOutlet weak var settingButton: UIBarButtonItem!
     
     
     //var eventDateList: [String] = []
@@ -83,6 +83,14 @@ class TodoCalendarViewController: UIViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
+    
+    @IBAction func settingButtonAction(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+        self.navigationController?.pushViewController(VC, animated: true)
+    }
+    
+    /* 로그아웃
     @IBAction func logoutButtonAction(_ sender: Any) {
         //UserDefaults.standard.removeObject(forKey: "auto")
         UserDefaults.standard.set(false, forKey: "auto")
@@ -101,11 +109,6 @@ class TodoCalendarViewController: UIViewController {
         logoutAlert.addAction(logoutFalseAction)
         logoutAlert.addAction(logoutTrueAction)
         self.present(logoutAlert, animated: true, completion: nil)
-        
-        
-        
-        
-        
     }
     
     func changeRootViewController(_ viewControllerToPresent: UIViewController) {
@@ -117,7 +120,7 @@ class TodoCalendarViewController: UIViewController {
                 self.present(viewControllerToPresent, animated: true, completion: nil)
             }
     }
-    
+    */
     func postTodoList(_ parameters: TodoListRequest, pageNum: Int) {
         //페이징 처리 필요
         AF.request("http://54.180.25.129:8080/todo/deadline?page=\(pageNum)", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)

@@ -29,6 +29,7 @@ class AddTodoViewController: UIViewController {
         todoDate = formatter.string(from: date as Date)
         deadlineArr = todoDate!.components(separatedBy: " ")
         print("zzz\(todoDate)")
+        
         self.navigationItem.title = "할일 추가"
     }
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sP3-TH-pCy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="sP3-TH-pCy">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -72,10 +72,10 @@
                         <imageReference key="selectedImage" image="calendar" catalog="system" symbolScale="medium"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" title="Todo" id="Qcs-X7-ZpE">
-                        <barButtonItem key="leftBarButtonItem" title="로그아웃" id="hYm-EK-Y8X">
-                            <color key="tintColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape" catalog="system" style="plain" id="60A-my-0g0">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="logoutButtonAction:" destination="Y6W-OH-hqX" id="Awc-HH-yuH"/>
+                                <action selector="settingButtonAction:" destination="Y6W-OH-hqX" id="1UP-tu-3Qj"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="Cbn-56-RXx">
@@ -86,8 +86,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="logoutButton" destination="hYm-EK-Y8X" id="Uve-JN-qI7"/>
-                        <outlet property="plusButton" destination="hYm-EK-Y8X" id="i3C-4s-s6l"/>
+                        <outlet property="plusButton" destination="Cbn-56-RXx" id="V9R-JV-KXt"/>
+                        <outlet property="settingButton" destination="60A-my-0g0" id="6tq-ST-pek"/>
                         <outlet property="todoCalendar" destination="yvg-69-Bca" id="lBG-9Z-JVe"/>
                         <outlet property="todoTableView" destination="wCk-Cp-c57" id="bL8-NO-AH7"/>
                     </connections>
@@ -95,6 +95,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2649.275362318841" y="75.669642857142847"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="h7z-Tt-LCF">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" id="V5D-Vc-MII" customClass="SettingViewController" customModule="Todo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wod-ps-kfe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-Mo-jy4">
+                                <rect key="frame" x="148" y="270" width="89" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="H3c-Mh-Cgh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WWL-H8-Wrg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2649" y="746"/>
         </scene>
         <!--Add Todo View Controller-->
         <scene sceneID="XnM-Te-5Rc">
@@ -297,6 +321,7 @@
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <image name="gearshape" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
