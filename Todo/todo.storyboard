@@ -104,21 +104,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="setting" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIh-Mo-jy4">
-                                <rect key="frame" x="148" y="270" width="89" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="78e-Dh-sV5">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" red="0.90109962219999995" green="0.92428380249999997" blue="0.99502104520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="H3c-Mh-Cgh"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.90109962219999995" green="0.92428380249999997" blue="0.99502104520000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="78e-Dh-sV5" firstAttribute="trailing" secondItem="H3c-Mh-Cgh" secondAttribute="trailing" id="NOa-JS-lUB"/>
+                            <constraint firstItem="78e-Dh-sV5" firstAttribute="bottom" secondItem="H3c-Mh-Cgh" secondAttribute="bottom" id="R59-tR-5TW"/>
+                            <constraint firstItem="78e-Dh-sV5" firstAttribute="leading" secondItem="H3c-Mh-Cgh" secondAttribute="leading" id="Trh-Bw-7mW"/>
+                            <constraint firstItem="78e-Dh-sV5" firstAttribute="top" secondItem="H3c-Mh-Cgh" secondAttribute="top" id="Wjo-0G-odH"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="settingTableView" destination="78e-Dh-sV5" id="hEi-0Y-m6s"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WWL-H8-Wrg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2649" y="746"/>
+            <point key="canvasLocation" x="2647.826086956522" y="745.98214285714278"/>
         </scene>
         <!--Add Todo View Controller-->
         <scene sceneID="XnM-Te-5Rc">

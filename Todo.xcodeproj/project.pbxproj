@@ -23,6 +23,8 @@
 		3D6D5E7028917DB800DE3F29 /* ModifyTodoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D5E6F28917DB800DE3F29 /* ModifyTodoRequest.swift */; };
 		3D6D5E7228917ED500DE3F29 /* ModifyTodoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D5E7128917ED500DE3F29 /* ModifyTodoResponse.swift */; };
 		3D6E8CA0289D03F8007C34B7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */; };
+		3D7E112428A10E9C004472E6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7E112228A10E9C004472E6 /* SettingTableViewCell.swift */; };
+		3D7E112528A10E9C004472E6 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D7E112328A10E9C004472E6 /* SettingTableViewCell.xib */; };
 		3D7E888227B6A6150038377B /* todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7E888127B6A6150038377B /* todo.storyboard */; };
 		3DBB267D27B3FDF2004C4DE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB267C27B3FDF2004C4DE0 /* AppDelegate.swift */; };
 		3DBB267F27B3FDF2004C4DE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB267E27B3FDF2004C4DE0 /* SceneDelegate.swift */; };
@@ -53,6 +55,8 @@
 		3D6D5E6F28917DB800DE3F29 /* ModifyTodoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTodoRequest.swift; sourceTree = "<group>"; };
 		3D6D5E7128917ED500DE3F29 /* ModifyTodoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTodoResponse.swift; sourceTree = "<group>"; };
 		3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		3D7E112228A10E9C004472E6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		3D7E112328A10E9C004472E6 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingTableViewCell.xib; sourceTree = "<group>"; };
 		3D7E888127B6A6150038377B /* todo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = todo.storyboard; sourceTree = "<group>"; };
 		3DBB267927B3FDF2004C4DE0 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBB267C27B3FDF2004C4DE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */,
+				3D7E112228A10E9C004472E6 /* SettingTableViewCell.swift */,
 				3DC4525427C0D137000D9401 /* TodoDetailViewController.swift */,
 				3DBB269027B4098A004C4DE0 /* SignUpViewController.swift */,
 				3DBB268027B3FDF2004C4DE0 /* LoginViewController.swift */,
@@ -122,6 +127,7 @@
 				3D7E888127B6A6150038377B /* todo.storyboard */,
 				3DBB268727B3FDF4004C4DE0 /* LaunchScreen.storyboard */,
 				3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */,
+				3D7E112328A10E9C004472E6 /* SettingTableViewCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 			files = (
 				3D7E888227B6A6150038377B /* todo.storyboard in Resources */,
 				3DBB268927B3FDF4004C4DE0 /* LaunchScreen.storyboard in Resources */,
+				3D7E112528A10E9C004472E6 /* SettingTableViewCell.xib in Resources */,
 				3DBB268627B3FDF4004C4DE0 /* Assets.xcassets in Resources */,
 				3D2A654927BA79970048C4C1 /* TodoTableViewCell.xib in Resources */,
 				3DBB268427B3FDF2004C4DE0 /* Main.storyboard in Resources */,
@@ -292,6 +299,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D7E112428A10E9C004472E6 /* SettingTableViewCell.swift in Sources */,
 				3DBB268127B3FDF2004C4DE0 /* LoginViewController.swift in Sources */,
 				3DBB267D27B3FDF2004C4DE0 /* AppDelegate.swift in Sources */,
 				3D53FEDE27B7D7FD00974EEF /* SignUpRequest.swift in Sources */,
