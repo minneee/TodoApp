@@ -19,6 +19,7 @@ struct selectedtodo {
 */
 var pageNum = 1
 var paging = true
+var eventDateList: [String] = []
 
 class TodoCalendarViewController: UIViewController {
 
@@ -37,6 +38,8 @@ class TodoCalendarViewController: UIViewController {
     
     var selectedDate = ""
     var nowDate = ""
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +65,7 @@ class TodoCalendarViewController: UIViewController {
         self.tabBarController?.tabBar.layer.borderColor = CGColor(red: 153, green: 153, blue: 153, alpha: 1)
         
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,6 +79,13 @@ class TodoCalendarViewController: UIViewController {
         postTodoList(param, pageNum: pageNum)
         
         self.tabBarController?.tabBar.isHidden = false
+       
+        let arr = selectedDate.components(separatedBy: "/")
+        let year = arr[0]
+        let month = arr[1]
+        let eventParam = MonthEventRequest(uuid: userid, year: year, month: month)
+        postMonthEvent(eventParam)
+        //self.todoCalendar.reloadData()
     }
     
     @IBAction func plusButtonAction(_ sender: Any) {
@@ -121,8 +132,47 @@ class TodoCalendarViewController: UIViewController {
             }
     }
     */
+    
+    func postMonthEvent(_ parameters: MonthEventRequest) {
+        AF.request("http://54.180.25.129:8080/todo/home", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: MonthEventResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if response.success == true {
+                        print("이벤트 조회 성공")
+
+                        for index in response.data {
+                            eventDateList.append(index.date)
+                        }
+                        //self.todoCalendar.reloadData()
+                        
+                    }
+                    
+                    else {
+                        print("이벤트 조회 실패")
+                    
+                        let EventFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let EventFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        EventFailAlert.addAction(EventFailAction)
+                        self.present(EventFailAlert, animated: true, completion: nil)
+                    }
+                    
+                case .failure(let error):
+                    print("서버통신 실패")
+                    
+                    let FailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    FailAlert.addAction(FailAction)
+                    self.present(FailAlert, animated: true, completion: nil)
+                }
+            }
+    }
+    
     func postTodoList(_ parameters: TodoListRequest, pageNum: Int) {
-        //페이징 처리 필요
+        //페이징 처리
         AF.request("http://54.180.25.129:8080/todo/deadline?page=\(pageNum)", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
             .validate()
             .responseDecodable(of: TodoListResponse.self) { [self] response in
@@ -358,14 +408,17 @@ extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     
 
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        /*
         var eventDateList: [String] = []
         //print(todoList.count)
         for index in 0..<todoList.count {
             //let arr = todoList[index].date.components(separatedBy: " ")
             eventDateList.append(todoList[index].deadline.date)
             //print("@@@!!\(eventDateList)")
+            
+            
         }
-        
+        */
         //print("+++\(eventDateList)")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd"
