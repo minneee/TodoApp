@@ -279,6 +279,7 @@ class TodoCalendarViewController: UIViewController {
 
 }
 
+//pagination을 위한 스크롤 설정
 extension TodoCalendarViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let contentOffsetY = scrollView.contentOffset.y
@@ -298,6 +299,7 @@ extension TodoCalendarViewController: UIScrollViewDelegate {
     }
 }
 
+//tableView
 extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -373,6 +375,7 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
+//calendar
 extension TodoCalendarViewController: FSCalendarDelegate, FSCalendarDataSource {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let dateFormatter = DateFormatter()

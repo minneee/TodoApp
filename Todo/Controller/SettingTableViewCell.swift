@@ -7,7 +7,9 @@
 
 import UIKit
 
+
 class SettingTableViewCell: UITableViewCell {
+
 
     @IBOutlet weak var settingCellLabel: UILabel!
     
@@ -15,6 +17,7 @@ class SettingTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
