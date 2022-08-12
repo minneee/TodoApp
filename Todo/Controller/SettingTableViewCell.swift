@@ -11,7 +11,7 @@ import UIKit
 class SettingTableViewCell: UITableViewCell {
 
 
-    @IBOutlet weak var settingCellLabel: UILabel!
+    @IBOutlet weak var cellSettingLabel: UILabel!
     
     
     override func awakeFromNib() {

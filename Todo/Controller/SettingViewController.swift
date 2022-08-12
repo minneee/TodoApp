@@ -49,7 +49,7 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userCell = tableView.dequeueReusableCell(withIdentifier: "SettingTableViewCell", for: indexPath) as! SettingTableViewCell
         
-        userCell.settingCellLabel.text = settingList[indexPath.row].settingTitle
+        userCell.cellSettingLabel.text = settingList[indexPath.row].settingTitle
         return userCell
     }
     
