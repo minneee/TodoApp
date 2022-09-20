@@ -31,6 +31,7 @@ class AddTodoViewController: UIViewController {
         print("zzz\(todoDate)")
         
         self.navigationItem.title = "할일 추가"
+        
     }
     
     @IBAction func datePickerAction(_ sender: UIDatePicker) {
