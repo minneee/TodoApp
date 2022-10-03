@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3D03D36128A268A1003C11DE /* MonthEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D36028A268A1003C11DE /* MonthEventRequest.swift */; };
 		3D03D36328A268B9003C11DE /* MonthEventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D03D36228A268B9003C11DE /* MonthEventResponse.swift */; };
+		3D0E26E928EADEFB009BAE61 /* IdCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E26E828EADEFB009BAE61 /* IdCheckRequest.swift */; };
+		3D0E26EB28EADF1B009BAE61 /* IdCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E26EA28EADF1B009BAE61 /* IdCheckResponse.swift */; };
+		3D0E26ED28EB0A0A009BAE61 /* PwCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E26EC28EB0A0A009BAE61 /* PwCheckRequest.swift */; };
+		3D0E26EF28EB0A21009BAE61 /* PwCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E26EE28EB0A21009BAE61 /* PwCheckResponse.swift */; };
 		3D2A654827BA79970048C4C1 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */; };
 		3D2A654927BA79970048C4C1 /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */; };
 		3D2A654B27BA7EA70048C4C1 /* TodoListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654A27BA7EA70048C4C1 /* TodoListRequest.swift */; };
@@ -43,6 +47,10 @@
 /* Begin PBXFileReference section */
 		3D03D36028A268A1003C11DE /* MonthEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthEventRequest.swift; sourceTree = "<group>"; };
 		3D03D36228A268B9003C11DE /* MonthEventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthEventResponse.swift; sourceTree = "<group>"; };
+		3D0E26E828EADEFB009BAE61 /* IdCheckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdCheckRequest.swift; sourceTree = "<group>"; };
+		3D0E26EA28EADF1B009BAE61 /* IdCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdCheckResponse.swift; sourceTree = "<group>"; };
+		3D0E26EC28EB0A0A009BAE61 /* PwCheckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwCheckRequest.swift; sourceTree = "<group>"; };
+		3D0E26EE28EB0A21009BAE61 /* PwCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwCheckResponse.swift; sourceTree = "<group>"; };
 		3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
 		3D2A654A27BA7EA70048C4C1 /* TodoListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRequest.swift; sourceTree = "<group>"; };
@@ -107,6 +115,10 @@
 				3D6D5E7128917ED500DE3F29 /* ModifyTodoResponse.swift */,
 				3D03D36028A268A1003C11DE /* MonthEventRequest.swift */,
 				3D03D36228A268B9003C11DE /* MonthEventResponse.swift */,
+				3D0E26E828EADEFB009BAE61 /* IdCheckRequest.swift */,
+				3D0E26EA28EADF1B009BAE61 /* IdCheckResponse.swift */,
+				3D0E26EC28EB0A0A009BAE61 /* PwCheckRequest.swift */,
+				3D0E26EE28EB0A21009BAE61 /* PwCheckResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -309,15 +321,19 @@
 				3DBB268127B3FDF2004C4DE0 /* LoginViewController.swift in Sources */,
 				3D03D36328A268B9003C11DE /* MonthEventResponse.swift in Sources */,
 				3DBB267D27B3FDF2004C4DE0 /* AppDelegate.swift in Sources */,
+				3D0E26EB28EADF1B009BAE61 /* IdCheckResponse.swift in Sources */,
 				3D53FEDE27B7D7FD00974EEF /* SignUpRequest.swift in Sources */,
 				3D03D36128A268A1003C11DE /* MonthEventRequest.swift in Sources */,
+				3D0E26E928EADEFB009BAE61 /* IdCheckRequest.swift in Sources */,
 				3D2A654B27BA7EA70048C4C1 /* TodoListRequest.swift in Sources */,
 				3D2A655327BA84040048C4C1 /* DeleteTodoRequest.swift in Sources */,
 				3D6E8CA0289D03F8007C34B7 /* SettingViewController.swift in Sources */,
+				3D0E26ED28EB0A0A009BAE61 /* PwCheckRequest.swift in Sources */,
 				3D53FEE227B7DDBC00974EEF /* TodoCalendarViewController.swift in Sources */,
 				3D53FEDC27B7C8F500974EEF /* LoginResponse.swift in Sources */,
 				3D2A655527BA84160048C4C1 /* DeleteTodoResponse.swift in Sources */,
 				3D53FEE027B7D81200974EEF /* SignUpResponse.swift in Sources */,
+				3D0E26EF28EB0A21009BAE61 /* PwCheckResponse.swift in Sources */,
 				3D2A654F27BA83DD0048C4C1 /* AddTodoRequest.swift in Sources */,
 				3DC471AB27B8F5DF00B997F2 /* AddTodoViewController.swift in Sources */,
 				3D6D5E7028917DB800DE3F29 /* ModifyTodoRequest.swift in Sources */,
