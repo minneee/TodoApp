@@ -39,6 +39,122 @@ class SettingViewController: UIViewController {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
     }
+    
+   
+    
+    
+    //setting에서 항목을 클릭 했을 때 실행되는 함수
+    func settingContent(_ rowIndex: Int) {
+        switch rowIndex {
+        case 1:
+            print("1") //비밀번호 변경
+            
+            
+            
+        case 2:
+            print("2") //로그아웃
+  
+            let logoutAlert = UIAlertController(title: "알림", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+            
+            let logoutFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+            let logoutTrueAction = UIAlertAction(title: "로그아웃", style: UIAlertAction.Style.destructive) { ACTION in
+                //자동로그인 해제
+                UserDefaults.standard.set(false, forKey: "auto")
+                UserDefaults.standard.removeObject(forKey: "id")
+                
+                //루트 컨트롤러 변경
+                let storyBD = UIStoryboard(name: "Main", bundle: nil)
+                let VC2 = storyBD.instantiateViewController(identifier: "NavController")
+                self.changeRootViewController(VC2)
+            }
+            
+            logoutAlert.addAction(logoutFalseAction)
+            logoutAlert.addAction(logoutTrueAction)
+            self.present(logoutAlert, animated: true, completion: nil)
+        
+                
+        case 3:
+            print("3") //회원 탈퇴
+                
+            let withdrawAlert = UIAlertController(title: "알림", message: "탈퇴하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+            
+            let withdrawFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+            let withdrawTrueAction = UIAlertAction(title: "회원 탈퇴", style: UIAlertAction.Style.destructive) { ACTION in
+                //회원 탈퇴 API호출
+                let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
+                print(uuid)
+                
+                let param = WithdrawRequest(uuid: uuid)
+                self.postWithdraw(param)
+            }
+            
+            withdrawAlert.addAction(withdrawFalseAction)
+            withdrawAlert.addAction(withdrawTrueAction)
+            self.present(withdrawAlert, animated: true, completion: nil)
+            
+            
+            
+            
+        default:
+            print("오류입니닷")
+        }
+    }
+    
+    //루트 컨트롤러 변경
+    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
+            if let window = UIApplication.shared.windows.first {
+                window.rootViewController = viewControllerToPresent
+                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
+            } else {
+                viewControllerToPresent.modalPresentationStyle = .overFullScreen
+                self.present(viewControllerToPresent, animated: true, completion: nil)
+            }
+    }
+    
+    
+    func postWithdraw(_ parameters: WithdrawRequest) {
+        AF.request("http://54.180.25.129:8080/withdraw", method: .delete, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: WithdrawResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("회원 탈퇴 성공")
+                        //성공 로직
+                        
+                        //자동로그인 해제
+                        UserDefaults.standard.set(false, forKey: "auto")
+                        UserDefaults.standard.removeObject(forKey: "id")
+                        
+                        //루트 컨트롤러 변경
+                        let storyBD = UIStoryboard(name: "Main", bundle: nil)
+                        let VC2 = storyBD.instantiateViewController(identifier: "NavController")
+                        self.changeRootViewController(VC2)
+                    }
+                    
+                    else{
+                        print("회원 탈퇴 실패\(response.message)")
+                        //alert message
+                        let postWithdrawFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let postWithdrawFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        postWithdrawFailAlert.addAction(postWithdrawFailAction)
+                        self.present(postWithdrawFailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let postWithdrawFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let postWithdrawFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    postWithdrawFailAlert.addAction(postWithdrawFailAction)
+                    self.present(postWithdrawFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
 }
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
@@ -53,4 +169,12 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         return userCell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedIndex = indexPath.row + 1
+        print(selectedIndex)
+        
+        settingContent(selectedIndex)
+    }
+    
 }
+

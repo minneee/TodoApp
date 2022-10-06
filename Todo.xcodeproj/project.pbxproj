@@ -26,6 +26,8 @@
 		3D53FEDE27B7D7FD00974EEF /* SignUpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53FEDD27B7D7FD00974EEF /* SignUpRequest.swift */; };
 		3D53FEE027B7D81200974EEF /* SignUpResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53FEDF27B7D81200974EEF /* SignUpResponse.swift */; };
 		3D53FEE227B7DDBC00974EEF /* TodoCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53FEE127B7DDBC00974EEF /* TodoCalendarViewController.swift */; };
+		3D56AF5528EF2E9500F3445C /* WithdrawRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56AF5428EF2E9500F3445C /* WithdrawRequest.swift */; };
+		3D56AF5728EF2EAF00F3445C /* WithdrawResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56AF5628EF2EAF00F3445C /* WithdrawResponse.swift */; };
 		3D6D5E7028917DB800DE3F29 /* ModifyTodoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D5E6F28917DB800DE3F29 /* ModifyTodoRequest.swift */; };
 		3D6D5E7228917ED500DE3F29 /* ModifyTodoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D5E7128917ED500DE3F29 /* ModifyTodoResponse.swift */; };
 		3D6E8CA0289D03F8007C34B7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */; };
@@ -64,6 +66,8 @@
 		3D53FEDD27B7D7FD00974EEF /* SignUpRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpRequest.swift; sourceTree = "<group>"; };
 		3D53FEDF27B7D81200974EEF /* SignUpResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpResponse.swift; sourceTree = "<group>"; };
 		3D53FEE127B7DDBC00974EEF /* TodoCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendarViewController.swift; sourceTree = "<group>"; };
+		3D56AF5428EF2E9500F3445C /* WithdrawRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawRequest.swift; sourceTree = "<group>"; };
+		3D56AF5628EF2EAF00F3445C /* WithdrawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawResponse.swift; sourceTree = "<group>"; };
 		3D6D5E6F28917DB800DE3F29 /* ModifyTodoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTodoRequest.swift; sourceTree = "<group>"; };
 		3D6D5E7128917ED500DE3F29 /* ModifyTodoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTodoResponse.swift; sourceTree = "<group>"; };
 		3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 				3D0E26EA28EADF1B009BAE61 /* IdCheckResponse.swift */,
 				3D0E26EC28EB0A0A009BAE61 /* PwCheckRequest.swift */,
 				3D0E26EE28EB0A21009BAE61 /* PwCheckResponse.swift */,
+				3D56AF5428EF2E9500F3445C /* WithdrawRequest.swift */,
+				3D56AF5628EF2EAF00F3445C /* WithdrawResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -323,7 +329,9 @@
 				3DBB267D27B3FDF2004C4DE0 /* AppDelegate.swift in Sources */,
 				3D0E26EB28EADF1B009BAE61 /* IdCheckResponse.swift in Sources */,
 				3D53FEDE27B7D7FD00974EEF /* SignUpRequest.swift in Sources */,
+				3D56AF5728EF2EAF00F3445C /* WithdrawResponse.swift in Sources */,
 				3D03D36128A268A1003C11DE /* MonthEventRequest.swift in Sources */,
+				3D56AF5528EF2E9500F3445C /* WithdrawRequest.swift in Sources */,
 				3D0E26E928EADEFB009BAE61 /* IdCheckRequest.swift in Sources */,
 				3D2A654B27BA7EA70048C4C1 /* TodoListRequest.swift in Sources */,
 				3D2A655327BA84040048C4C1 /* DeleteTodoRequest.swift in Sources */,

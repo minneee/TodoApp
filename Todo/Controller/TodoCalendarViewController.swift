@@ -101,37 +101,6 @@ class TodoCalendarViewController: UIViewController {
         self.navigationController?.pushViewController(VC, animated: true)
     }
     
-    /* 로그아웃
-    @IBAction func logoutButtonAction(_ sender: Any) {
-        //UserDefaults.standard.removeObject(forKey: "auto")
-        UserDefaults.standard.set(false, forKey: "auto")
-        UserDefaults.standard.removeObject(forKey: "id")
-
-        let logoutAlert = UIAlertController(title: "알림", message: "로그아웃 하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-        
-        let logoutFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
-        let logoutTrueAction = UIAlertAction(title: "로그아웃", style: UIAlertAction.Style.destructive) { ACTION in 
-            //루트 컨트롤러 변경
-            let storyBD = UIStoryboard(name: "Main", bundle: nil)
-            let VC2 = storyBD.instantiateViewController(identifier: "NavController")
-            self.changeRootViewController(VC2)
-        }
-        
-        logoutAlert.addAction(logoutFalseAction)
-        logoutAlert.addAction(logoutTrueAction)
-        self.present(logoutAlert, animated: true, completion: nil)
-    }
-    
-    func changeRootViewController(_ viewControllerToPresent: UIViewController) {
-            if let window = UIApplication.shared.windows.first {
-                window.rootViewController = viewControllerToPresent
-                UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: nil)
-            } else {
-                viewControllerToPresent.modalPresentationStyle = .overFullScreen
-                self.present(viewControllerToPresent, animated: true, completion: nil)
-            }
-    }
-    */
     
     func postMonthEvent(_ parameters: MonthEventRequest) {
         AF.request("http://54.180.25.129:8080/todo/home", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
