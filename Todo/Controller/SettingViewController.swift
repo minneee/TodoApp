@@ -17,6 +17,8 @@ class SettingViewController: UIViewController {
     
     @IBOutlet weak var settingTableView: UITableView!
     
+    var pwCheck = false
+    
     var settingList: [SettingList] = [
         SettingList(settingTitle: "비밀번호 변경"),
         SettingList(settingTitle: "로그아웃"),
@@ -75,22 +77,51 @@ class SettingViewController: UIViewController {
                 
         case 3:
             print("3") //회원 탈퇴
-                
-            let withdrawAlert = UIAlertController(title: "알림", message: "탈퇴하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+              
+            var pwCheckAlert = UIAlertController(title: "회원 탈퇴", message: "현재 비밀번호를 입력하세요", preferredStyle: UIAlertController.Style.alert)
             
-            let withdrawFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
-            let withdrawTrueAction = UIAlertAction(title: "회원 탈퇴", style: UIAlertAction.Style.destructive) { ACTION in
-                //회원 탈퇴 API호출
+            let pwCheckFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+            let pwCheckTrueAction = UIAlertAction(title: "비밀번호 확인", style: UIAlertAction.Style.destructive) { ACTION in
+                //확인 버튼 (비밀번호 확인 API -> 탈퇴 확인 알림)
                 let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
-                print(uuid)
+                let password = pwCheckAlert.textFields?[0].text ?? ""
+    
+                let param = OriginPwCheckRequest(uuid: uuid, password: password)
+                self.postOriginPwCheck(param)
                 
-                let param = WithdrawRequest(uuid: uuid)
-                self.postWithdraw(param)
+                if self.pwCheck == true {
+                    //탈퇴 알림
+                    let withdrawAlert = UIAlertController(title: "알림", message: "탈퇴하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let withdrawFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+                    let withdrawTrueAction = UIAlertAction(title: "회원 탈퇴", style: UIAlertAction.Style.destructive) { ACTION in
+                        //회원 탈퇴 API호출
+                        let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
+                        print(uuid)
+                        
+                        let param = WithdrawRequest(uuid: uuid)
+                        self.postWithdraw(param)
+                    }
+                    
+                    withdrawAlert.addAction(withdrawFalseAction)
+                    withdrawAlert.addAction(withdrawTrueAction)
+                    self.present(withdrawAlert, animated: true, completion: nil)
+                    
+                    
+                }
+                
             }
             
-            withdrawAlert.addAction(withdrawFalseAction)
-            withdrawAlert.addAction(withdrawTrueAction)
-            self.present(withdrawAlert, animated: true, completion: nil)
+            self.pwCheck = false
+            
+            pwCheckAlert.addAction(pwCheckFalseAction)
+            pwCheckAlert.addAction(pwCheckTrueAction)
+            pwCheckAlert.addTextField()
+            self.present(pwCheckAlert, animated: true, completion: nil)
+            
+            
+            
+            
             
             
             
@@ -151,6 +182,44 @@ class SettingViewController: UIViewController {
                     let postWithdrawFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                     postWithdrawFailAlert.addAction(postWithdrawFailAction)
                     self.present(postWithdrawFailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
+    
+    
+    func postOriginPwCheck(_ parameters: OriginPwCheckRequest) {
+        AF.request("http://54.180.25.129:8080/password/origin", method: .post, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: OriginPwCheckResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("비밀번호 확인 성공")
+                        //성공 로직
+                        pwCheck = true
+                        
+                    }
+                    
+                    else{
+                        print("비밀번호 확인 실패\(response.message)")
+                        //alert message
+                        let postOriginPwCheckFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let postOriginPwCheckFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        postOriginPwCheckFailAlert.addAction(postOriginPwCheckFailAction)
+                        self.present(postOriginPwCheckFailAlert, animated: true, completion: nil)
+                    }
+                    
+                    
+                case .failure(let error):
+                    print(error)
+                    print("서버 통신 실패")
+                    let postOriginPwCheckFailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let postOriginPwCheckFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    postOriginPwCheckFailAlert.addAction(postOriginPwCheckFailAction)
+                    self.present(postOriginPwCheckFailAlert, animated: true, completion: nil)
                 }
                 
             }

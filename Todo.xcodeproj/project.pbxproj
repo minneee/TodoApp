@@ -28,6 +28,8 @@
 		3D53FEE227B7DDBC00974EEF /* TodoCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D53FEE127B7DDBC00974EEF /* TodoCalendarViewController.swift */; };
 		3D56AF5528EF2E9500F3445C /* WithdrawRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56AF5428EF2E9500F3445C /* WithdrawRequest.swift */; };
 		3D56AF5728EF2EAF00F3445C /* WithdrawResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56AF5628EF2EAF00F3445C /* WithdrawResponse.swift */; };
+		3D56AF5928F59FCD00F3445C /* OriginPwCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56AF5828F59FCD00F3445C /* OriginPwCheckRequest.swift */; };
+		3D56AF5B28F59FD900F3445C /* OriginPwCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D56AF5A28F59FD900F3445C /* OriginPwCheckResponse.swift */; };
 		3D6D5E7028917DB800DE3F29 /* ModifyTodoRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D5E6F28917DB800DE3F29 /* ModifyTodoRequest.swift */; };
 		3D6D5E7228917ED500DE3F29 /* ModifyTodoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6D5E7128917ED500DE3F29 /* ModifyTodoResponse.swift */; };
 		3D6E8CA0289D03F8007C34B7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */; };
@@ -68,6 +70,8 @@
 		3D53FEE127B7DDBC00974EEF /* TodoCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoCalendarViewController.swift; sourceTree = "<group>"; };
 		3D56AF5428EF2E9500F3445C /* WithdrawRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawRequest.swift; sourceTree = "<group>"; };
 		3D56AF5628EF2EAF00F3445C /* WithdrawResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawResponse.swift; sourceTree = "<group>"; };
+		3D56AF5828F59FCD00F3445C /* OriginPwCheckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginPwCheckRequest.swift; sourceTree = "<group>"; };
+		3D56AF5A28F59FD900F3445C /* OriginPwCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginPwCheckResponse.swift; sourceTree = "<group>"; };
 		3D6D5E6F28917DB800DE3F29 /* ModifyTodoRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTodoRequest.swift; sourceTree = "<group>"; };
 		3D6D5E7128917ED500DE3F29 /* ModifyTodoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyTodoResponse.swift; sourceTree = "<group>"; };
 		3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				3D0E26EE28EB0A21009BAE61 /* PwCheckResponse.swift */,
 				3D56AF5428EF2E9500F3445C /* WithdrawRequest.swift */,
 				3D56AF5628EF2EAF00F3445C /* WithdrawResponse.swift */,
+				3D56AF5828F59FCD00F3445C /* OriginPwCheckRequest.swift */,
+				3D56AF5A28F59FD900F3445C /* OriginPwCheckResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -341,9 +347,11 @@
 				3D53FEDC27B7C8F500974EEF /* LoginResponse.swift in Sources */,
 				3D2A655527BA84160048C4C1 /* DeleteTodoResponse.swift in Sources */,
 				3D53FEE027B7D81200974EEF /* SignUpResponse.swift in Sources */,
+				3D56AF5B28F59FD900F3445C /* OriginPwCheckResponse.swift in Sources */,
 				3D0E26EF28EB0A21009BAE61 /* PwCheckResponse.swift in Sources */,
 				3D2A654F27BA83DD0048C4C1 /* AddTodoRequest.swift in Sources */,
 				3DC471AB27B8F5DF00B997F2 /* AddTodoViewController.swift in Sources */,
+				3D56AF5928F59FCD00F3445C /* OriginPwCheckRequest.swift in Sources */,
 				3D6D5E7028917DB800DE3F29 /* ModifyTodoRequest.swift in Sources */,
 				3D2A654827BA79970048C4C1 /* TodoTableViewCell.swift in Sources */,
 				3DBB269127B4098A004C4DE0 /* SignUpViewController.swift in Sources */,
