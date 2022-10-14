@@ -35,6 +35,7 @@
 		3D6E8CA0289D03F8007C34B7 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */; };
 		3D7E112428A10E9C004472E6 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7E112228A10E9C004472E6 /* SettingTableViewCell.swift */; };
 		3D7E888227B6A6150038377B /* todo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D7E888127B6A6150038377B /* todo.storyboard */; };
+		3D91647A28F98E95005D608B /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D91647928F98E95005D608B /* ChangePasswordViewController.swift */; };
 		3DBB267D27B3FDF2004C4DE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB267C27B3FDF2004C4DE0 /* AppDelegate.swift */; };
 		3DBB267F27B3FDF2004C4DE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB267E27B3FDF2004C4DE0 /* SceneDelegate.swift */; };
 		3DBB268127B3FDF2004C4DE0 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBB268027B3FDF2004C4DE0 /* LoginViewController.swift */; };
@@ -77,6 +78,7 @@
 		3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		3D7E112228A10E9C004472E6 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		3D7E888127B6A6150038377B /* todo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = todo.storyboard; sourceTree = "<group>"; };
+		3D91647928F98E95005D608B /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		3DBB267927B3FDF2004C4DE0 /* Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Todo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DBB267C27B3FDF2004C4DE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3DBB267E27B3FDF2004C4DE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				3D53FEE127B7DDBC00974EEF /* TodoCalendarViewController.swift */,
 				3DC471AA27B8F5DF00B997F2 /* AddTodoViewController.swift */,
 				3D6E8C9F289D03F8007C34B7 /* SettingViewController.swift */,
+				3D91647928F98E95005D608B /* ChangePasswordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D91647A28F98E95005D608B /* ChangePasswordViewController.swift in Sources */,
 				3D7E112428A10E9C004472E6 /* SettingTableViewCell.swift in Sources */,
 				3DBB268127B3FDF2004C4DE0 /* LoginViewController.swift in Sources */,
 				3D03D36328A268B9003C11DE /* MonthEventResponse.swift in Sources */,

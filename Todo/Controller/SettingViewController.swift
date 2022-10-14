@@ -18,6 +18,7 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var settingTableView: UITableView!
     
     var pwCheck = false
+    var okButton = false
     
     var settingList: [SettingList] = [
         SettingList(settingTitle: "비밀번호 변경"),
@@ -51,6 +52,9 @@ class SettingViewController: UIViewController {
         case 1:
             print("1") //비밀번호 변경
             
+            let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+            let VC = storyBoard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
+            self.navigationController?.pushViewController(VC, animated: true)
             
             
         case 2:
@@ -86,9 +90,14 @@ class SettingViewController: UIViewController {
                 let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
                 let password = pwCheckAlert.textFields?[0].text ?? ""
     
+                //현재 비밀번호 확인 api 연결
                 let param = OriginPwCheckRequest(uuid: uuid, password: password)
                 self.postOriginPwCheck(param)
                 
+                self.okButton = true
+                
+                /*
+                //비밀번호 일치할 떄
                 if self.pwCheck == true {
                     //탈퇴 알림
                     let withdrawAlert = UIAlertController(title: "알림", message: "탈퇴하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
@@ -107,12 +116,10 @@ class SettingViewController: UIViewController {
                     withdrawAlert.addAction(withdrawTrueAction)
                     self.present(withdrawAlert, animated: true, completion: nil)
                     
-                    
-                }
-                
+                    self.pwCheck = false
+
+                }*/
             }
-            
-            self.pwCheck = false
             
             pwCheckAlert.addAction(pwCheckFalseAction)
             pwCheckAlert.addAction(pwCheckTrueAction)
@@ -129,6 +136,7 @@ class SettingViewController: UIViewController {
         default:
             print("오류입니닷")
         }
+   
     }
     
     //루트 컨트롤러 변경
