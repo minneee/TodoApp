@@ -17,9 +17,8 @@ class SettingViewController: UIViewController {
     
     @IBOutlet weak var settingTableView: UITableView!
     
-    var pwCheck = false
-    var okButton = false
-    
+    var pwChange = 0
+
     var settingList: [SettingList] = [
         SettingList(settingTitle: "비밀번호 변경"),
         SettingList(settingTitle: "로그아웃"),
@@ -52,10 +51,29 @@ class SettingViewController: UIViewController {
         case 1:
             print("1") //비밀번호 변경
             
-            let storyBoard = UIStoryboard(name: "todo", bundle: nil)
-            let VC = storyBoard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
-            self.navigationController?.pushViewController(VC, animated: true)
+            let pwCheckAlert = UIAlertController(title: "비밀번호 변경", message: "현재 비밀번호를 입력하세요", preferredStyle: UIAlertController.Style.alert)
             
+            let pwCheckFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+            let pwCheckTrueAction = UIAlertAction(title: "비밀번호 확인", style: UIAlertAction.Style.destructive) { ACTION in
+                //확인 버튼 (비밀번호 확인 API -> 비밀번호 변경 페이지로 이동)
+                let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
+                let password = pwCheckAlert.textFields?[0].text ?? ""
+    
+                self.pwChange = 1
+                
+                //현재 비밀번호 확인 api 연결
+                let param = OriginPwCheckRequest(uuid: uuid, password: password)
+                self.postOriginPwCheck(param)
+            }
+            
+            pwCheckAlert.addAction(pwCheckFalseAction)
+            pwCheckAlert.addAction(pwCheckTrueAction)
+            pwCheckAlert.addTextField { pwCheckTextField in
+                pwCheckTextField.isSecureTextEntry = true
+            }
+            self.present(pwCheckAlert, animated: true, completion: nil)
+            
+           
             
         case 2:
             print("2") //로그아웃
@@ -82,7 +100,7 @@ class SettingViewController: UIViewController {
         case 3:
             print("3") //회원 탈퇴
               
-            var pwCheckAlert = UIAlertController(title: "회원 탈퇴", message: "현재 비밀번호를 입력하세요", preferredStyle: UIAlertController.Style.alert)
+            let pwCheckAlert = UIAlertController(title: "회원 탈퇴", message: "현재 비밀번호를 입력하세요", preferredStyle: UIAlertController.Style.alert)
             
             let pwCheckFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
             let pwCheckTrueAction = UIAlertAction(title: "비밀번호 확인", style: UIAlertAction.Style.destructive) { ACTION in
@@ -90,42 +108,19 @@ class SettingViewController: UIViewController {
                 let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
                 let password = pwCheckAlert.textFields?[0].text ?? ""
     
+                self.pwChange = 3
+                
                 //현재 비밀번호 확인 api 연결
                 let param = OriginPwCheckRequest(uuid: uuid, password: password)
                 self.postOriginPwCheck(param)
-                
-                self.okButton = true
-                
-                /*
-                //비밀번호 일치할 떄
-                if self.pwCheck == true {
-                    //탈퇴 알림
-                    let withdrawAlert = UIAlertController(title: "알림", message: "탈퇴하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
-                    
-                    let withdrawFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
-                    let withdrawTrueAction = UIAlertAction(title: "회원 탈퇴", style: UIAlertAction.Style.destructive) { ACTION in
-                        //회원 탈퇴 API호출
-                        let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
-                        print(uuid)
-                        
-                        let param = WithdrawRequest(uuid: uuid)
-                        self.postWithdraw(param)
-                    }
-                    
-                    withdrawAlert.addAction(withdrawFalseAction)
-                    withdrawAlert.addAction(withdrawTrueAction)
-                    self.present(withdrawAlert, animated: true, completion: nil)
-                    
-                    self.pwCheck = false
-
-                }*/
             }
             
             pwCheckAlert.addAction(pwCheckFalseAction)
             pwCheckAlert.addAction(pwCheckTrueAction)
-            pwCheckAlert.addTextField()
+            pwCheckAlert.addTextField{ pwCheckTextField in
+                pwCheckTextField.isSecureTextEntry = true
+            }
             self.present(pwCheckAlert, animated: true, completion: nil)
-            
             
             
             
@@ -205,8 +200,36 @@ class SettingViewController: UIViewController {
                     if(response.success == true){
                         print("비밀번호 확인 성공")
                         //성공 로직
-                        pwCheck = true
                         
+                        switch self.pwChange {
+                        case 1:
+                            //비밀번호 변경
+                            let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+                            let VC = storyBoard.instantiateViewController(withIdentifier: "ChangePasswordViewController") as! ChangePasswordViewController
+                            self.navigationController?.pushViewController(VC, animated: true)
+                            
+                        case 3:
+                            //회원 탈퇴
+                            let withdrawAlert = UIAlertController(title: "알림", message: "탈퇴하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+                            
+                            let withdrawFalseAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
+                            let withdrawTrueAction = UIAlertAction(title: "회원 탈퇴", style: UIAlertAction.Style.destructive) { ACTION in
+                                //회원 탈퇴 API호출
+                                let uuid = UserDefaults.standard.string(forKey: "id") ?? ""
+                                print(uuid)
+                                
+                                let param = WithdrawRequest(uuid: uuid)
+                                self.postWithdraw(param)
+                            }
+                            
+                            withdrawAlert.addAction(withdrawFalseAction)
+                            withdrawAlert.addAction(withdrawTrueAction)
+                            self.present(withdrawAlert, animated: true, completion: nil)
+                            
+                        default:
+                            print("비밀번호 확인 오류")
+                        }
+ 
                     }
                     
                     else{

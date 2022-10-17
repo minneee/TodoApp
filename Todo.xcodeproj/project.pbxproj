@@ -13,6 +13,8 @@
 		3D0E26EB28EADF1B009BAE61 /* IdCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E26EA28EADF1B009BAE61 /* IdCheckResponse.swift */; };
 		3D0E26ED28EB0A0A009BAE61 /* PwCheckRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E26EC28EB0A0A009BAE61 /* PwCheckRequest.swift */; };
 		3D0E26EF28EB0A21009BAE61 /* PwCheckResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0E26EE28EB0A21009BAE61 /* PwCheckResponse.swift */; };
+		3D12F72228FD5FB100F7B721 /* PwChangeRequset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F72128FD5FB100F7B721 /* PwChangeRequset.swift */; };
+		3D12F72428FD5FC100F7B721 /* PwChangeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F72328FD5FC100F7B721 /* PwChangeResponse.swift */; };
 		3D2A654827BA79970048C4C1 /* TodoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */; };
 		3D2A654927BA79970048C4C1 /* TodoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */; };
 		3D2A654B27BA7EA70048C4C1 /* TodoListRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A654A27BA7EA70048C4C1 /* TodoListRequest.swift */; };
@@ -56,6 +58,8 @@
 		3D0E26EA28EADF1B009BAE61 /* IdCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdCheckResponse.swift; sourceTree = "<group>"; };
 		3D0E26EC28EB0A0A009BAE61 /* PwCheckRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwCheckRequest.swift; sourceTree = "<group>"; };
 		3D0E26EE28EB0A21009BAE61 /* PwCheckResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwCheckResponse.swift; sourceTree = "<group>"; };
+		3D12F72128FD5FB100F7B721 /* PwChangeRequset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwChangeRequset.swift; sourceTree = "<group>"; };
+		3D12F72328FD5FC100F7B721 /* PwChangeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PwChangeResponse.swift; sourceTree = "<group>"; };
 		3D2A654627BA79970048C4C1 /* TodoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoTableViewCell.swift; sourceTree = "<group>"; };
 		3D2A654727BA79970048C4C1 /* TodoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TodoTableViewCell.xib; sourceTree = "<group>"; };
 		3D2A654A27BA7EA70048C4C1 /* TodoListRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListRequest.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 				3D56AF5628EF2EAF00F3445C /* WithdrawResponse.swift */,
 				3D56AF5828F59FCD00F3445C /* OriginPwCheckRequest.swift */,
 				3D56AF5A28F59FD900F3445C /* OriginPwCheckResponse.swift */,
+				3D12F72128FD5FB100F7B721 /* PwChangeRequset.swift */,
+				3D12F72328FD5FC100F7B721 /* PwChangeResponse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -332,6 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D12F72228FD5FB100F7B721 /* PwChangeRequset.swift in Sources */,
 				3D91647A28F98E95005D608B /* ChangePasswordViewController.swift in Sources */,
 				3D7E112428A10E9C004472E6 /* SettingTableViewCell.swift in Sources */,
 				3DBB268127B3FDF2004C4DE0 /* LoginViewController.swift in Sources */,
@@ -339,6 +346,7 @@
 				3DBB267D27B3FDF2004C4DE0 /* AppDelegate.swift in Sources */,
 				3D0E26EB28EADF1B009BAE61 /* IdCheckResponse.swift in Sources */,
 				3D53FEDE27B7D7FD00974EEF /* SignUpRequest.swift in Sources */,
+				3D12F72428FD5FC100F7B721 /* PwChangeResponse.swift in Sources */,
 				3D56AF5728EF2EAF00F3445C /* WithdrawResponse.swift in Sources */,
 				3D03D36128A268A1003C11DE /* MonthEventRequest.swift in Sources */,
 				3D56AF5528EF2E9500F3445C /* WithdrawRequest.swift in Sources */,

@@ -12,7 +12,7 @@ class AddTodoViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
     
-    @IBOutlet weak var contentTextField: UITextView!
+    @IBOutlet weak var contentTextView: UITextView!
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
@@ -32,6 +32,8 @@ class AddTodoViewController: UIViewController {
         
         self.navigationItem.title = "할일 추가"
         
+        contentTextView.delegate = self
+        
     }
     
     @IBAction func datePickerAction(_ sender: UIDatePicker) {
@@ -45,7 +47,7 @@ class AddTodoViewController: UIViewController {
     
     @IBAction func addButtonAction(_ sender: Any) {
         let title = titleTextField.text ?? ""
-        let content = contentTextField.text ?? ""
+        let content = contentTextView.text ?? ""
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let deadline = TodoDeadlineRequset(date: deadlineArr[0], time: deadlineArr[1])
         let param = AddTodoRequest(uuid: userid, title: title, content: content, deadline: deadline)//(title: title, content: content, userid: userid, date: todoDate ?? "")
@@ -87,4 +89,20 @@ class AddTodoViewController: UIViewController {
                 
             }
     }
+}
+
+extension AddTodoViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+            if textView.text == "여기에 내용을 입력하세요." {
+                textView.text = nil
+                textView.textColor = .black
+            }
+        }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+            if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                textView.text = "여기에 내용을 입력하세요."
+                textView.textColor = .lightGray
+            }
+        }
 }

@@ -139,7 +139,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tpI-p1-VQ6">
                                 <rect key="frame" x="30" y="106" width="354" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 비밀번호" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m35-F3-jWY">
                                 <rect key="frame" x="30" y="78" width="95" height="18"/>
@@ -148,18 +148,18 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="새로운 비밀번호 확인하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LeF-KQ-Ijq">
-                                <rect key="frame" x="30" y="160" width="151" height="18"/>
+                                <rect key="frame" x="30" y="171" width="151" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zl-1R-N6O">
-                                <rect key="frame" x="30" y="188" width="354" height="34"/>
+                                <rect key="frame" x="30" y="199" width="354" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsQ-NC-5SO">
-                                <rect key="frame" x="30" y="252" width="354" height="35"/>
+                                <rect key="frame" x="30" y="263" width="354" height="35"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="변경하기" cornerStyle="fixed">
@@ -167,11 +167,21 @@
                                         <color key="backgroundColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </backgroundConfiguration>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="pwChangeButtonAction:" destination="FkU-dm-Blf" eventType="touchUpInside" id="Naz-vj-3Al"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="※영문과 숫자를 포함한 8-20 자리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pyn-Ee-dtD">
+                                <rect key="frame" x="203" y="145" width="176" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="iEq-Hn-7Qq"/>
                         <color key="backgroundColor" red="0.90588235859999999" green="0.92549026010000002" blue="0.98823523520000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="Pyn-Ee-dtD" firstAttribute="trailing" secondItem="tpI-p1-VQ6" secondAttribute="trailing" constant="-5" id="7yV-be-P0d"/>
                             <constraint firstItem="0zl-1R-N6O" firstAttribute="top" secondItem="LeF-KQ-Ijq" secondAttribute="bottom" constant="10" id="Ato-nq-sjk"/>
                             <constraint firstItem="tpI-p1-VQ6" firstAttribute="top" secondItem="m35-F3-jWY" secondAttribute="bottom" constant="10" id="EFG-5O-5GD"/>
                             <constraint firstItem="0zl-1R-N6O" firstAttribute="leading" secondItem="iEq-Hn-7Qq" secondAttribute="leading" constant="30" id="FME-g0-GDe"/>
@@ -179,14 +189,20 @@
                             <constraint firstItem="LeF-KQ-Ijq" firstAttribute="leading" secondItem="iEq-Hn-7Qq" secondAttribute="leading" constant="30" id="Mt7-Dt-nkj"/>
                             <constraint firstItem="m35-F3-jWY" firstAttribute="leading" secondItem="iEq-Hn-7Qq" secondAttribute="leading" constant="30" id="QS2-TV-izC"/>
                             <constraint firstItem="bsQ-NC-5SO" firstAttribute="top" secondItem="0zl-1R-N6O" secondAttribute="bottom" constant="30" id="j7G-cJ-3Xd"/>
+                            <constraint firstItem="LeF-KQ-Ijq" firstAttribute="top" secondItem="Pyn-Ee-dtD" secondAttribute="bottom" constant="10" id="lYr-uH-cIy"/>
                             <constraint firstItem="bsQ-NC-5SO" firstAttribute="trailing" secondItem="0zl-1R-N6O" secondAttribute="trailing" id="m7u-U1-ZsC"/>
                             <constraint firstItem="m35-F3-jWY" firstAttribute="top" secondItem="iEq-Hn-7Qq" secondAttribute="top" constant="30" id="mh0-fc-GOb"/>
                             <constraint firstItem="iEq-Hn-7Qq" firstAttribute="trailing" secondItem="tpI-p1-VQ6" secondAttribute="trailing" constant="30" id="mjF-39-dRV"/>
                             <constraint firstItem="tpI-p1-VQ6" firstAttribute="leading" secondItem="iEq-Hn-7Qq" secondAttribute="leading" constant="30" id="nNh-B2-CtU"/>
                             <constraint firstItem="bsQ-NC-5SO" firstAttribute="leading" secondItem="0zl-1R-N6O" secondAttribute="leading" id="nul-kJ-mmN"/>
-                            <constraint firstItem="LeF-KQ-Ijq" firstAttribute="top" secondItem="tpI-p1-VQ6" secondAttribute="bottom" constant="20" id="r1r-21-oJu"/>
+                            <constraint firstItem="Pyn-Ee-dtD" firstAttribute="top" secondItem="tpI-p1-VQ6" secondAttribute="bottom" constant="5" id="sKc-1E-y8k"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="newPwCheckTextField" destination="0zl-1R-N6O" id="f5Z-zA-zHf"/>
+                        <outlet property="newPwTextField" destination="tpI-p1-VQ6" id="RqU-Ya-ifd"/>
+                        <outlet property="pwChangeButton" destination="bsQ-NC-5SO" id="1dT-nS-Is7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GUf-Xv-YgH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -243,7 +259,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="233" id="w57-LX-cCc"/>
                                 </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -268,7 +284,7 @@
                     <navigationItem key="navigationItem" title="Title" id="KNZ-L5-QVl"/>
                     <connections>
                         <outlet property="addButton" destination="m1B-wP-uZp" id="0Nj-0l-gx4"/>
-                        <outlet property="contentTextField" destination="Fxo-su-zSn" id="N3U-Ck-ya9"/>
+                        <outlet property="contentTextView" destination="Fxo-su-zSn" id="rxl-4g-SLS"/>
                         <outlet property="datePicker" destination="dQK-SF-3iH" id="527-VS-wRt"/>
                         <outlet property="titleTextField" destination="qkX-9w-DeC" id="W82-2d-BIm"/>
                     </connections>
@@ -408,6 +424,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
