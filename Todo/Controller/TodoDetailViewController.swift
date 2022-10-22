@@ -18,6 +18,11 @@ class TodoDetailViewController: UIViewController {
     
     @IBOutlet weak var deleteButton: UIButton!
     
+    lazy var rightButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(buttonPressed(_:)))
+        
+        return button
+    }()
     var receiveTitle = ""
     var receiveDate = ""
     var receiveContent = ""
@@ -31,11 +36,26 @@ class TodoDetailViewController: UIViewController {
         detailContentTextView.text = receiveContent
         
         self.navigationItem.title = "상세보기"
+        self.navigationItem.rightBarButtonItem = rightButton
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    @objc private func buttonPressed(_ sender: Any) {
+        //편집 버튼 클릭
+        print("편집 버튼 클릭")
+        
+        let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+        let VC = storyBoard.instantiateViewController(withIdentifier: "AddTodoViewController") as! AddTodoViewController
+        VC.navigationItem.title = "할일 편집"
+        self.navigationController?.pushViewController(VC, animated: true)
+        print("음름음")
+   
+        
     }
     
     @IBAction func deleteButtonAction(_ sender: Any) {
@@ -45,7 +65,7 @@ class TodoDetailViewController: UIViewController {
         let deleteAction = UIAlertAction(title: "삭제", style: UIAlertAction.Style.destructive, handler: {
             ACTION in
             let userid = UserDefaults.standard.string(forKey: "id") ?? ""
-            let param = DeleteTodoRequest(uuid: userid, todo_id: self.receiveNo)//(no: self.receiveNo, userid: userid)
+            let param = DeleteTodoRequest(uuid: userid, todo_id: self.receiveNo)
             self.postDeleteTodo(param)
             
         })
