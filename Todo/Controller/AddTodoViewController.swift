@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 
+
 class AddTodoViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
@@ -21,6 +22,11 @@ class AddTodoViewController: UIViewController {
     var todoDate: String?
     var deadlineArr: [String] = []
     
+    var modifyTitle = ""
+    var modifyDate = ""
+    var modifyContent = ""
+    var navTitle = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let date = NSDate()
@@ -28,10 +34,23 @@ class AddTodoViewController: UIViewController {
         formatter.dateFormat = "yyyy/MM/dd HH:mm"
         todoDate = formatter.string(from: date as Date)
         deadlineArr = todoDate!.components(separatedBy: " ")
-        print("zzz\(todoDate)")
         
-        self.navigationItem.title = "할일 추가"
         
+        if navTitle == ""{
+            self.navigationItem.title = "할일 추가"
+        }
+        else {
+            self.navigationItem.title = navTitle
+        }
+        
+        
+        if modifyTitle != "" {
+            titleTextField.text = modifyTitle
+            contentTextView.text = modifyContent
+        }
+        
+        
+        //placeholder
         contentTextView.delegate = self
         
     }
@@ -50,7 +69,7 @@ class AddTodoViewController: UIViewController {
         let content = contentTextView.text ?? ""
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let deadline = TodoDeadlineRequset(date: deadlineArr[0], time: deadlineArr[1])
-        let param = AddTodoRequest(uuid: userid, title: title, content: content, deadline: deadline)//(title: title, content: content, userid: userid, date: todoDate ?? "")
+        let param = AddTodoRequest(uuid: userid, title: title, content: content, deadline: deadline)
         print(todoDate)
         print(userid)
         postAddTodo(param)
@@ -93,16 +112,22 @@ class AddTodoViewController: UIViewController {
 
 extension AddTodoViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-            if textView.text == "여기에 내용을 입력하세요." {
-                textView.text = nil
-                textView.textColor = .black
-            }
+        if textView.text == "여기에 내용을 입력하세요." {
+            textView.text = nil
+            textView.textColor = .black
         }
+        else if textView.text == modifyContent {
+            textView.textColor = .black
+        }
+                    
+                    
+    }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-            if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-                textView.text = "여기에 내용을 입력하세요."
-                textView.textColor = .lightGray
-            }
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = "여기에 내용을 입력하세요."
+            textView.textColor = .lightGray
         }
+        
+    }
 }

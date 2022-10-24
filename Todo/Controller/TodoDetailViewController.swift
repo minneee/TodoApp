@@ -8,6 +8,7 @@
 import UIKit
 import Alamofire
 
+
 class TodoDetailViewController: UIViewController {
 
     @IBOutlet weak var detailTitleLabel: UILabel!
@@ -18,6 +19,7 @@ class TodoDetailViewController: UIViewController {
     
     @IBOutlet weak var deleteButton: UIButton!
     
+    
     lazy var rightButton: UIBarButtonItem = {
         let button = UIBarButtonItem(title: "편집", style: .plain, target: self, action: #selector(buttonPressed(_:)))
         
@@ -27,6 +29,7 @@ class TodoDetailViewController: UIViewController {
     var receiveDate = ""
     var receiveContent = ""
     var receiveNo = -1
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +54,10 @@ class TodoDetailViewController: UIViewController {
         
         let storyBoard = UIStoryboard(name: "todo", bundle: nil)
         let VC = storyBoard.instantiateViewController(withIdentifier: "AddTodoViewController") as! AddTodoViewController
-        VC.navigationItem.title = "할일 편집"
+        VC.navTitle = "할일 편집"
+        VC.modifyTitle = detailTitleLabel.text ?? ""
+        VC.modifyContent = detailContentTextView.text ?? ""
+        
         self.navigationController?.pushViewController(VC, animated: true)
         print("음름음")
    
