@@ -224,11 +224,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" datePickerMode="dateAndTime" minuteInterval="1" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="dQK-SF-3iH">
-                                <rect key="frame" x="20" y="132" width="200" height="34.5"/>
+                                <rect key="frame" x="20" y="132" width="220" height="34.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.48025592540000001" green="0.55749478880000003" blue="0.97735267879999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="VEu-7L-Fh5"/>
+                                    <constraint firstAttribute="width" constant="220" id="VEu-7L-Fh5"/>
                                 </constraints>
                                 <locale key="locale" localeIdentifier="ko_KR"/>
                                 <connections>
@@ -243,7 +243,7 @@
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="추가하기"/>
-                                <buttonConfiguration key="configuration" style="plain" title="추가하기">
+                                <buttonConfiguration key="configuration" style="plain" title="확인">
                                     <backgroundConfiguration key="background" cornerRadius="8">
                                         <color key="backgroundColor" red="0.33725491169999999" green="0.47058826679999999" blue="0.85490196939999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </backgroundConfiguration>
@@ -259,7 +259,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="233" id="w57-LX-cCc"/>
                                 </constraints>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>

@@ -26,6 +26,8 @@ class AddTodoViewController: UIViewController {
     var modifyDate = ""
     var modifyContent = ""
     var navTitle = ""
+    var todoId = -1
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +37,31 @@ class AddTodoViewController: UIViewController {
         todoDate = formatter.string(from: date as Date)
         deadlineArr = todoDate!.components(separatedBy: " ")
         
-        
         if navTitle == ""{
             self.navigationItem.title = "할일 추가"
+            
         }
         else {
             self.navigationItem.title = navTitle
+            
         }
         
         
         if modifyTitle != "" {
             titleTextField.text = modifyTitle
-            contentTextView.text = modifyContent
         }
         
+        
+        if modifyContent != "" {
+            contentTextView.text = modifyContent
+            contentTextView.textColor = .black
+        }
+        
+        
+        if modifyDate != "" {
+            let time = formatter.date(from: modifyDate)
+            datePicker.setDate(time!, animated: true)
+        }
         
         //placeholder
         contentTextView.delegate = self
@@ -66,13 +79,33 @@ class AddTodoViewController: UIViewController {
     
     @IBAction func addButtonAction(_ sender: Any) {
         let title = titleTextField.text ?? ""
-        let content = contentTextView.text ?? ""
+        var content = ""
+        if contentTextView.textColor == .black {
+            content = contentTextView.text ?? ""
+        }
+        
         let userid = UserDefaults.standard.string(forKey: "id") ?? ""
         let deadline = TodoDeadlineRequset(date: deadlineArr[0], time: deadlineArr[1])
-        let param = AddTodoRequest(uuid: userid, title: title, content: content, deadline: deadline)
+        
+        let addParam = AddTodoRequest(uuid: userid, title: title, content: content, deadline: deadline)
+        let modifyParam = ModifyTodoRequest(uuid: userid, todo_id: todoId, title: title, content: content, deadline: deadline)
         print(todoDate)
         print(userid)
-        postAddTodo(param)
+        print(todoId)
+        print(title)
+        print(content)
+        print(deadline)
+        
+        
+        if navTitle == "" {
+            print("할일 추가 클릭")
+            postAddTodo(addParam)
+        }
+        else if navTitle == "할일 편집" {
+            print("할일 편집 클릭")
+            postModifyTodo(modifyParam)
+        }
+        
     }
 
     func postAddTodo(_ parameters: AddTodoRequest) {
@@ -94,6 +127,41 @@ class AddTodoViewController: UIViewController {
                         let addTodoFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
                         addTodoFailAlert.addAction(addTodoFailAction)
                         self.present(addTodoFailAlert, animated: true, completion: nil)
+                    }
+                    
+                case .failure(let error):
+                    print("서버 통신 실패\(error.localizedDescription)")
+                    
+                    let FailAlert = UIAlertController(title: "경고", message: "서버 통신에 실패하였습니다.", preferredStyle: UIAlertController.Style.alert)
+                    
+                    let FailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                    FailAlert.addAction(FailAction)
+                    self.present(FailAlert, animated: true, completion: nil)
+                }
+                
+            }
+    }
+    
+    
+    func postModifyTodo(_ parameters: ModifyTodoRequest) {
+        AF.request("http://54.180.25.129:8080/todo", method: .put, parameters: parameters, encoder: JSONParameterEncoder(), headers: nil)
+            .validate()
+            .responseDecodable(of: ModifyTodoResponse.self) { [self] response in
+                switch response.result {
+                case .success(let response):
+                    if(response.success == true){
+                        print("투두 수정 성공")
+                        print(response.message)
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    else{
+                        print("투두 수정 실패")
+                        
+                        let modifyTodoFailAlert = UIAlertController(title: "경고", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                        
+                        let modifyTodoFailAction = UIAlertAction(title: "확인", style: UIAlertAction.Style.default, handler: nil)
+                        modifyTodoFailAlert.addAction(modifyTodoFailAction)
+                        self.present(modifyTodoFailAlert, animated: true, completion: nil)
                     }
                     
                 case .failure(let error):

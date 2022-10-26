@@ -318,10 +318,14 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+   
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            print("투두 삭제 버튼 클릭")
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: "삭제") {_, _, completion in
+            //삭제
+            print("삭제 스와이프")
+            
             let deleteAlert = UIAlertController(title: "알림", message: "할 일을 삭제하시겠습니까?", preferredStyle: UIAlertController.Style.alert)
             
             let deleteFailAction = UIAlertAction(title: "취소", style: UIAlertAction.Style.default, handler: nil)
@@ -336,11 +340,28 @@ extension TodoCalendarViewController: UITableViewDelegate, UITableViewDataSource
             self.present(deleteAlert, animated: true, completion: nil)
             
             
-            
-            
-            
-            
+            completion(true)
         }
+        
+        let modifyAction = UIContextualAction(style: .normal, title: "수정") { _, _, completion in
+            //수정
+            print("수정 스와이프")
+            
+            let storyBoard = UIStoryboard(name: "todo", bundle: nil)
+            let VC = storyBoard.instantiateViewController(withIdentifier: "AddTodoViewController") as! AddTodoViewController
+            VC.navTitle = "할일 편집"
+            VC.modifyTitle = self.todoList[indexPath.row].title
+            VC.modifyContent = self.todoList[indexPath.row].content ?? ""
+            VC.modifyDate = self.todoList[indexPath.row].deadline.date + " " + (self.todoList[indexPath.row].deadline.time ?? "")
+            VC.todoId = self.todoList[indexPath.row].todo_id
+            
+            self.navigationController?.pushViewController(VC, animated: true)
+            
+            completion(true)
+        }
+        
+        let config = UISwipeActionsConfiguration(actions: [deleteAction, modifyAction])
+        return config
     }
 }
 

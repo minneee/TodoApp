@@ -57,10 +57,12 @@ class TodoDetailViewController: UIViewController {
         VC.navTitle = "할일 편집"
         VC.modifyTitle = detailTitleLabel.text ?? ""
         VC.modifyContent = detailContentTextView.text ?? ""
+        VC.modifyDate = detailDateLabel.text ?? ""
+        VC.todoId = receiveNo
+        print(receiveNo)
         
         self.navigationController?.pushViewController(VC, animated: true)
-        print("음름음")
-   
+        
         
     }
     
